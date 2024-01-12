@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>웹퍼블리싱</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    @font-face {
+    font-family: 'Gmarket Sans';    font-style: normal;    font-weight: 700;
+    src: local('Gmarket Sans Bold'), local('GmarketSans-Bold'),
+    url('http://script.gmarket.com/fonts/GmarketSansBold.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+    url('http://script.gmarket.com/fonts/GmarketSansBold.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+  }
+  @font-face {
+    font-family: 'Gmarket Sans';    font-style: normal;    font-weight: 500;
+    src: local('Gmarket Sans Medium'), local('GmarketSans-Medium'),
+    url('http://script.gmarket.com/fonts/GmarketSansMedium.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+    url('http://script.gmarket.com/fonts/GmarketSansMedium.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+  }
+  @font-face {
+    font-family: 'Gmarket Sans';    font-style: normal;    font-weight: 300;
+    src: local('Gmarket Sans Light'), local('GmarketSans-Light'),
+    url('http://script.gmarket.com/fonts/GmarketSansLight.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+    url('http://script.gmarket.com/fonts/GmarketSansLight.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+  }
+
+  *{padding:0px; margin:0px; font-family: 'Gmarket Sans';}
+  ul, li{list-style: none;}
+  
+
+  section{
+    box-shadow: 0 0 3px 1px #ccc;
+    position: relative;
+    border-radius: 20px;
+    margin: 20px;
+    width: 90%; margin: 20px auto;
+    overflow: hidden;
+  }
+
+  section > h2{
+      text-align:center;
+      padding: 25px 0px;
+      font-size: 24px;
+      background: #695356 ; color: #ecb865;
+    }
+
+
+  .c_wrap > li{
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+    background: #ecb865; color:#db7b65;
+    line-height: 55px;
+    /* margin-bottom:10px; */
+    text-indent: 30px;
+  }
+
+  .sub > li{
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 55px;
+      background: #f4e1c3;
+    }
+    .sub > li > a{
+      text-decoration: none;
+      color: #000;
+    }
+
+    .sub > li:hover>a{
+      font-weight:bold;
+    }
+    
+    /* .top_btn{
+      position: fixed; bottom: 20px; right: 20px;
+      border: 2px solid #555; border-radius: 50%;
+      box-shadow: 0 0 5px 2px rgba(0,0,0,.25);
+      width: 40px; height: 40px;
+      text-align: center; 
+    } */
+    .fa-solid{
+      position: fixed; bottom: 20px; right: 20px;
+      border: 2px solid #555; border-radius: 50%;
+      box-shadow: 0 0 7px 1px rgba(66, 66, 66, 0.3);
+      width: 40px; height: 40px;
+      text-align: center; 
+      font-size: 30px;
+      line-height: 40px;
+      color: #222;
+    }
+
+    .top_btn:hover > .fa-solid{
+      background: #222; color: #efefef;
+    }
+
+
+  </style>
+</head>
+<body>
+  <section class="jquery">
+    <h2>Jquery</h2>
+    <ul class="c_wrap">
+      <li>DAY1 - 제이쿼리 소개와 문법
+        <ul class="sub"> 
+          <li><a href="./04_jquery/01_제이쿼리 소개와 기본문법.html" title="01_제이쿼리 소개와 기본문법">01_제이쿼리 소개와 기본문법</a></li>
+          <li><a href="./04_jquery/02_제이쿼리 선택자.html" title="02_제이쿼리 선택자">02_제이쿼리 선택자</a></li>
+        </ul>
+      </li>
+
+      <li>DAY2 - 제이쿼리 이벤트
+        <ul class="sub"> 
+          <li><a href="./04_jquery/03_제이쿼리 이벤트(event).html" title="03_제이쿼리 이벤트(event)">03_제이쿼리 이벤트(event)</a></li>
+
+        </ul>
+      </li>
+
+      <li>DAY3 - 제이쿼리 효과 메서드
+        <ul class="sub"> 
+          <li><a href="./04_jquery/04_제이쿼리_효과메서드(effect).html" title="04_제이쿼리_효과메서드(effect)">04_제이쿼리_효과메서드(effect)</a></li>
+          <li><a href="./04_jquery/실습예제01_웹페이지 상단 배너 접기_모달창.html" title="실습예제01_웹페이지 상단 배너 접기_모달창">실습예제01_웹페이지 상단 배너 접기_모달창</a></li>
+          <li><a href="./04_jquery/실습예제02_스타벅스 모바일 2단 내비게이션 구현하기.html" title="실습예제02_스타벅스 모바일 2단 내비게이션 구현하기.html">실습예제02_스타벅스 모바일 2단 내비게이션 구현하기.html</a></li>
+        </ul>
+      </li>
+
+      <li>DAY4 - 효과 메서드를 활용한 슬라이드
+        <ul class="sub">
+          <li><a href="./04_jquery/05_애니메이트메서드 사용법과 응용.html" title="05_애니메이트메서드 사용법과 응용">05_애니메이트메서드 사용법과 응용</a></li>
+        </ul>
+      </li>
+
+      <li>DAY5 - 애니메이트 메서드의 문법과 활용
+        <ul class="sub">
+          <li><a href="./04_jquery/06_miero.html" title="미에로 화이바 슬라이드 만들기">미에로 화이바 화면 만들기</a></li>
+        </ul>
+      </li>
+
+      <li>DAY6 - 애니메이트 메서드 복습
+        <ul class="sub">
+          <li><a href="./04_jquery/07_애니메이트 메서드 복습하기.html" title="07_애니메이트 메서드 복습하기">07_애니메이트 메서드 복습하기</a></li>
+          <li><a href="./08_baskinrobbins.html" title="애니메이트를 활용한 내비게이션">애니메이트를 활용한 내비게이션</a></li>
+        </ul>
+      </li>
+
+      <li>DAY7 - 콘트롤버튼을 활용한 이미지 슬라이드
+        <ul class="sub">
+          <li><a href="./04_jquery/09_콘트롤버튼을 활용한 이미지 슬라이드.html" title="09_콘트롤버튼을 활용한 이미지 슬라이드">09_콘트롤버튼을 활용한 이미지 슬라이드</a></li>
+        </ul>
+      </li>
+
+      <li>DAY8 - 제이쿼리 문서객체조작 조작 (1)클래스조작
+        <ul class="sub">
+          <li><a href="./04_jquery/10. 제이쿼리_문서객체조작_클래스조작.html" title="">10. 제이쿼리 문서객체조작 조작 (1)클래스조작</a></li>
+        </ul>
+      </li>
+
+      <li>DAY9 - 제이쿼리 문서객체 조작 (2)내용조작
+        <ul class="sub">
+          <li><a href="./04_jquery/11_제이쿼리_문서객체조작_내용변경 메서드.html" title="11_제이쿼리_문서객체조작_내용변경 메서드">11. 제이쿼리 문서객체조작 조작 (2)내용변경 메서드</a></li>
+          <li><a href="./04_jquery/실습예제_내용변경 메서드를 활용한 쿠팡 메인 슬라이드.html" title="내용변경 메서드 실습예제">실습예제_내용변경 메서드를 활용한 쿠팡 메인 슬라이드</a></li>
+        </ul>
+      </li>
+
+
+
+    </ul>
+  </section>
+
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>실습예제01_웹페이지 상단 배너 접기</title>
+  <style>
+    *{margin: 0px; padding:0px;}
+    .banner, .wrap{
+      width: 1034px;
+      margin: 0px auto;
+    }
+
+    .popup_wrap{
+      position: fixed; width: 100%; height: 100%;
+      left: 0px; top: 0px;
+      background: rgba(0,0,0,.7);
+    }
+
+    .popup{
+      border: 3px solid #f00;
+      position: absolute;
+      top:50%; left:50%; transform: translate(-50%, -50%);
+      width: 500px; height: 500px;
+      background: #222;
+    }
+
+    .popup img{width: 100%;}
+    #close_btn{
+      position: absolute; right: 10px; bottom: 8px;
+      color: #fff; background: #222; border: none;}
+  </style>
+
+  
+<!-- 제이쿼리 라이브러리 연결하기 -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+
+<script>
+  $(document).ready(function(){
+    //닫기 버튼 변수 선언
+    const cbtn = $('.banner #c_btn');
+
+    //버튼 클릭 이벤트 생성
+    cbtn.click(function(){
+      $('.banner').slideUp();
+    });
+
+
+
+    // 팝업
+    //팝업 닫기 버튼 변수선언
+    const c_btn = $('#close_btn');
+
+    //닫기 버튼 클릭 시 popup_wrap 사라지게하기
+    c_btn.click(function(){
+      $('.popup_wrap').fadeOut(500);
+    });
+
+
+  });
+
+
+
+</script>
+</head>
+
+
+<body>
+  <h2>실습예제01_웹페이지 상단 배너 접기</h2>
+  <div class="banner">
+    <a href="#" title="메인배너"><img src="./images/main01_01.jpg" alt=""></a>
+    <input type="button" value="닫기" id="c_btn">
+  </div>
+
+  <div class="wrap">
+    <img src="./images/main01_02.jpg" alt="배너이미지2">
+  </div>
+
+  <div class="popup_wrap">
+    <div class="popup">
+      <img src="./images/popup.jpg" alt="팝업이미지">
+      <input type="button" value="닫기 X" id="close_btn">
+    </div>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>06_애니메이트 메서드 복습하기</title>
+  <style>
+    .box{
+      border: 3px solid #333;
+      width: 478px; height: 278px;
+      margin: 0px auto;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .title, .face{
+      position: absolute; opacity: 0;
+    }
+
+    .title{top: 30px; left:-130px;}
+    .face{right: 0px; bottom: -300px;}
+
+    /* .title{top: 30px; left:40px;}
+    .face{right: 0px; bottom: -278px;} */
+  </style>
+</head>
+<body>
+  <h2>06_애니메이트 메서드 복습하기</h2>
+
+  <article class="box">
+    <h3 class="title"><img src="./images/jobs_text.gif" alt="스티브잡스"></h3>
+    <img src="./images/jobs.png" alt="스티브잡스 사진" class="face">
+  </article>
+
+
+  <!-- 제이쿼리 라이브러리 -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+  
+  <script>
+  $(document).ready(function(){
+    //변수에 담기
+    const t = $('.title');
+    const f = $('.face');
+
+    //애니메이트 메서드 적용하기
+    t.animate({'left':'30px','opacity':'1'},500);
+    f.delay(100).animate({'bottom':'0px','opacity':'1'},500);
+
+
+
+
+
+  });
+  </script>
+
+
+
+  
+</body>
+</html>

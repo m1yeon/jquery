@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>01_제이쿼리 소개와 기본문법</title>
+  <!-- 제이쿼리 연결 _ 세 가지 방식 중 하나 연결하기-->
+  <!-- 제이쿼리 라리브러리 연결하기 -->
+  <script src="./script/jquery-3.7.1.js"></script>
+
+  <!-- 제이쿼리 라이브러리 최적화 버전 -->
+  <script src="./script/jquery-3.7.1.min.js"></script>
+
+  <!-- 제이쿼리 라이브러리 CND 방식으로 연결하기 -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+
+  <!-- 제이쿼리 내용 작성하기(wrapper) -->
+  <script>
+    $(document).ready(function(){  //문서객체(html문서)가 로딩이 완료되면 제이쿼리 내용을 실행한다.
+
+      //1. 자바스크립트로 제목 서식 변경하기
+      // 변수선언
+      let title01;
+      title01 = document.getElementById('title01');
+      title01.style.color='#FFF1CE';
+      title01.style.backgroundColor="#91C483";
+
+      //2. 제이쿼리 라이브러리로 제목서식 변경하기
+      $('h3').css({
+        'color':'#91C483',
+        'background':'#FFF1CE'
+      });
+      $('p').css('color','brown');
+      $('li').css('background','#ddd');
+
+    });
+  </script>
+
+</head>
+<body>
+  <h2 id="title01">01_제이쿼리 소개와 기본문법</h2>
+  <h3>제이쿼리란</h3>
+  <p>제이쿼리 : 자바스크립트의 생산성을 향상시켜주는 자바스크립트의 '라이브러리언어'이다.<br>
+  자바스크립트 라이브러리 : 자주 사용하는 코드들을 재사용할 수 있는 형태로 가공하여 프로그래밍의 효율성을 높여주도록 만든 코드들의 집합이다.</p>
+
+
+  <h3>1. 제이쿼리의 특징</h3>
+    <ul>
+      <li>앨리먼트(html태그 요소)를 선택하는 강력한 기능을 제공한다. (css선택자 보다 많음)</li>
+      <li>선택된 앨리먼트를 제어할 수 있는 다양한 함수를 제공한다.</li>
+      <li>자바스크립트의 자주 사용하는 기능을 라이브러리화한 언어이다.</li>
+    </ul>
+
+
+  <h3>2. 제이쿼리라이브러리 연결방법</h3>
+  <ul>
+    <li>(1)제이쿼리 라이브러리 파일 직접 연결하기<br> : 제이쿼리 공식사이트에서 라이브러리 파일을 다운로드 받아 html문서의 head요소 안에 직접 script작성하여 연결</li>
+    <li>(2)제이쿼리 라이브러리 CDN 방식으로 연결하기<br> : JQUERY.COM페이에서 오른쪽 '다운로드'클릭, 페이지로 이동하고 아래페이지로 내려가면 'googld cdn'메뉴 클릭
+    하여 나온 페이지에서 1x, 2x, 3x 버전 선택하여 복사, html head 영역안에 붙여넣기 한다.</li>
+  </ul>
+
+  <h3>3. 제이쿼리 문법(작성법)</h3>
+  <ul>
+    <li>$('선택대상').메서드();</li>
+    <li>jquery('선택대상').메서드();</li>
+  </ul>
+
+  <h4>4. 제이쿼리 라이브러리에서 $의 역할</h4>
+  <p>제이쿼리에서는 '$'기호를 맨 앞에 넣고 시작을 하는데 이것은 괄호()안에 넣을 대상을 선택하기 위함이다.</p>
+  <p>$('h1'), $(window), $('#id'), $("input[type='text']") 등</p>
+
+  <h3>5. 제이쿼리에서 '$'기호 안에 들어가는 대상 3가지</h3>
+  <ul>
+    <li>html태그</li>
+    <li>css 선택자</li>
+    <li>자바스크립트 객체(document.window 등)</li>
+  </ul>
+
+  <h3>6. 제이쿼리에서 사용하는 wrapper</h3>
+  <ul>
+    <li>$(document).ready(function(){실행할 내용;});</li>
+    <li>$(function(){실행할내용;}); _ 3x 버전 : 높은 버전에서만 사용가능</li>  
+    <li>jQuery(function(){실행할 내용;}); _ 옛날 방식으로 잘 사용하지 않음</li>
+    <li>jquery(document).ready(function(){실행할 내용;}); _ 옛날 방식으로 잘 사용하지 않음</li>
+  </ul>
+
+
+
+
+
+
+</body>
+</html>

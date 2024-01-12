@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>미에로화이바 반응형웹</title>
+  <!-- 초기화 -->
+  <link rel="stylesheet" href="./css/reset.css" type="text/css">
+
+  <!-- 공통서식(글꼴, 크기, 색상, 링크) -->
+  <link rel="stylesheet" href="./css/base.css" type="text/css">
+
+  <!-- pc화면 해상도일때 적용되는 서식 -->
+  <link rel="stylesheet" href="./css/pc.css" type="text/css">
+
+  <!-- tablet화면 해상도일때 적용되는 서식 -->
+  <link rel="stylesheet" href="./css/tablet.css" type="text/css">
+
+  <!-- mobile화면 해상도일때 적용되는 서식 -->
+  <link rel="stylesheet" href="./css/mobile.css" type="text/css">
+
+  <!-- 아이콘폰트 주소 연결 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+</head>
+<body>
+  <!-- 헤어영역 시작 -->
+  <header>
+    <h1>
+      <a href="index.html" title="메인페이지 바로가기">
+        <img src="./images/mierohiber/logo2.png" alt="상단로고">
+      </a>
+    </h1>
+
+    <!-- 모바일 버전에서 나오는 토글버튼(햄버거) -->
+    <div id="toggle">
+      <span>&nbsp;</span>
+      <span>&nbsp;</span>
+      <span>&nbsp;</span>
+    </div>
+
+    <!-- 메인메뉴 -->
+    <nav class="gnb">
+      <ul>
+        <li><a href="#" title="미에로">미에로<i class="fas fa-angle-down"></i></a></li>
+        <li><a href="#" title="제품소개">제품소개<i class="fas fa-angle-down"></i></a></li>
+        <li><a href="#" title="미에로 스토리">미에로 스토리<i class="fas fa-angle-down"></i></a></li>
+        <li><a href="#" title="미에로 이벤트">미에로 이벤트<i class="fas fa-angle-down"></i></a></li>
+        <li><a href="#" title="공지사항">공지사항</a></li>
+      </ul>
+    </nav>
+
+  </header>
+
+  <!-- 메인영역 시작 -->
+  <main>
+    <article class="visual">
+      <h2>메인슬라이드</h2>
+      <!-- 페이드인/페이드아웃 슬라이드 : 
+      는 이미지가 겹쳐지게 배치해둬야함 -->
+      <div class="slide1">
+        <span>이제 짜릿하게 즐기자!<br>미에로화이바 스파클링 제로</span>
+        <img src="./images/mierohiber/miero_slide1.jpg" alt="">
+      </div>
+
+      <div class="slide2">
+        <span>마시는 식이섬유<br>미에로 화이바</span>
+        <img src="./images/mierohiber/miero_slide3.jpg" alt="">
+      </div>
+
+      <div class="slide3">
+        <img src="./images/mierohiber/miero_slide2.jpg" alt="">
+      </div>
+      <!-- 공통 ui 구성요소 (sns, 좌/우 버튼, 콘트롤버튼) -->
+      <!-- sns  -->
+      <ul class="sns">
+        <li><a href="#" title="페이스북 바로가기"><i class="fab fa-facebook-f"></i></a></li>
+        <li><a href="#" title="인스타그램 바로가기"><i class="fab fa-instagram"></i></a></li>
+        <li><a href="#" title="유튜브 바로가기"><i class="fab fa-youtube"></i></a></li>
+      </ul>
+
+      <!-- 좌, 우 방향버튼 -->
+      <ul class="s_btn">
+        <li><img src="./images/mierohiber/left.png" alt="왼쪽"></li>
+        <li><img src="./images/mierohiber/right.png" alt="오른쪽"></li>
+      </ul>
+
+      <!-- 콘트롤버튼 -->
+      <ul class="ctrl_btn">
+        <li class="on">&nbsp;</li>
+        <li>&nbsp;</li>
+        <li>&nbsp;</li>
+      </ul>
+    </article>
+  </main>
+
+  <!-- 푸터영역 시작 -->
+  <footer>
+
+  </footer>
+
+  <!-- 제이쿼리 라이브러리 -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+
+  <!-- 제이쿼리 -->
+  <script>
+    $(document).ready(function(){
+      
+      //1. 변수선언
+      const l_btn = $('.visual .s_btn li:first-child');//좌 버튼
+      const r_btn = $('.visual .s_btn li:last-child'); //우 버튼
+      const c_btn = $('.visual .ctrl_btn li'); //콘트롤 버튼
+      let v_slide_img = $('.visual > div');//슬라이드 이미지
+
+      let i = 0;
+      
+      //2. 움직이는 함수 = 서서히 사라지고 나타나는 효과
+    function fade(idx){
+      // console.log('시간호출함수')
+      v_slide_img.fadeOut(); //보이는 이미지 모두 숨기기
+      // v_slide_img.eq(i).fadeOut(); //eq(숫자) : 몇번째인지 //
+      c_btn.removeClass('on'); //기존 컨트롤 버튼 서식을 제거
+
+      if(i==2){ //만약 마지막 이미지라면
+        i=0; //처음이미지가 보이게 하고
+      }else{ //그렇지 않다면
+        i++; //다음 이미지가 보이게 함
+      }
+
+      // c_btn.eq(i).addClass('on');
+      c_btn.eq(i).addClass('on');
+      v_slide_img.eq(i).stop().fadeIn();//해당 이미지가 보이게 함 //stop()를 넣으면 나중에 좌/우 버튼 많이 클릭해도 오류가 나지않게 해줌_한번만 작동하게 해서
+    }
+
+    function fade2(idx){
+      v_slide_img.fadeOut();
+      c_btn.removeClass('on');
+      if(i==0){
+        i=2;
+      }else{
+        i--;
+      }
+      c_btn.eq(i).addClass('on');
+      v_slide_img.eq(i).stop().fadeIn();
+    }
+
+
+    //3. 매 5초마다 함수를 반복호출하여 슬라이드가 변하게 함
+    //setTimeOUt();지정시간 후 실행// 또는 setInterval(); 바로 실행
+    let Timer = setInterval(fade,5000);
+
+    // 4. 좌,우 버튼 클릭시 해당하는 방향으로 슬라이드 이미지가 나오게 하기
+
+    l_btn.click(function(){
+      fade2();
+    });
+
+    r_btn.click(function(){
+      fade();
+    });
+    
+    //좌,우 버튼에 마우스 오버시 시간을 제거하거
+    $('.s_btn > li').hover(function(){
+      clearInterval(Timer);
+    },function(){ //마우스 아웃시 시간을 생성하여 다시 움직이게 함
+      Timer = setInterval(fade,5000);
+    });
+
+    //pagenation(콘트롤버튼)
+    //1. 현재페이지 번호를 체크
+    //2. 이미지의 전체 개수 
+
+    /*
+    구현순서
+    1. 컨트롤 버튼 변수 선언
+    2. 컨트롤 버튼(li) 클릭시 인덱스값0,1,2 값을 출력
+    3. 출력값을 fade 함수의 매개변수값으로 넘김 => 슬라이드가 변함
+    4. 사용자가 클릭한 콘트럴 버튼(li)에 act서식을 적용하여 어둡게함.
+    */
+
+    c_btn.click(function(){
+      let idx = $(this).index();
+      console.log(idx);
+
+      v_slide_img.fadeOut();
+      c_btn.removeClass('on');
+
+      c_btn.eq(idx).addClass('on');
+      v_slide_img.eq(idx).stop().fadeIn();
+
+      i = idx
+
+      clearInterval(Timer); //기존의 자동 슬라이드는 제거
+    });
+
+  c_btn.mouseleave(function(){
+    Timer = setInterval(fade,5000);
+  });    
+
+
+  //윈도우창의 너비값, 높이값 = $(window).width(); or $(window).height();
+  // $(window).innerWidth(); = 패딩값을 포함한 너비
+
+  let w_width;
+
+
+  // 반응형인지 확인시 창의 너비를 줄여봄 -> 제이쿼리에서도 브라우저의 크기 변화에 따라 기능 넣기 가능 
+  //브라우저의 크기가 변하면 함수내용을 실행함
+  $(window).resize(function(){
+    w_width = $(window).innerWidth();
+    console.log(w_width); //해상도 console 창에서 확인
+
+    //pc버전 해상도일경우 배경색 노랑 tablet버전 초록
+
+    if(w_width>=1025){
+      $('body').css('background','#ff0');
+      $('header h1 img').attr('src','./images/mierohiber/logo2.png');
+    }else if(w_width>=768){  //w_width > 767 && w_width>=1024
+      $('body').css('background','green');
+      $('header h1 img').attr('src','./images/mierohiber/logo.png');
+
+    }else{
+      $('body').css('background','#ccc');
+      $('header h1 img').attr('src','./images/mierohiber/logo.png');
+    }
+
+    //
+    //movile버전 회색
+
+  }).resize();
+
+
+
+    });
+  </script>
+
+</body>
+</html>

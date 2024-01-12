@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>제이쿼리 선택자 학습하기(기본선택자, 탐색, 속성)</title>
+<!-- 제이쿼리 연결 -->
+<script src="../script/jquery-3.7.1.js"></script>
+<!-- 제이쿼리 wrapper -->
+<script>
+  $(document).ready(function(){
+    //변수 선언
+    const b1 = $('.btn1');
+    const b2 = $('.btn2');
+
+    //버튼 클릭시 해당 내용 적용하기 click, mouseover=mouseenter, mouseout=mouseleave
+    // dblClick(더블클릭)
+    b1.click(function(){
+      $('#jquery').css('color','#c00');
+    });
+
+  });
+</script>
+<style>
+#wrap > div{
+  width:700px; 
+  border:2px solid #EF1B50; 
+  margin-bottom:20px;
+  }
+  
+body{ 
+  font-family:'nanumgothic', sans-serif; 
+  font-size:14px;
+  color:#333;
+  }
+
+button{
+  width:150px;  height:30px;  margin-left:20px;}
+  
+h3{
+  background-color:#EF1B50; 
+  margin-top:0px; 
+  color:#FFF; 
+  padding:5px;
+  }
+  
+</style>
+</head>
+<body>
+<h2>제이쿼리 선택자 학습하기(기본선택자, 탐색, 속성)</h2>
+<div id="wrap">
+
+<div id="basics">
+<h3>기 본</h3>
+  <ul id="tutorials">
+    <li class="tutorial" id="HTML"> HTML </li>
+    <li class="tutorial" id="CSS"> CSS </li>
+    <li class="tutorial" id="javascript"> javascript </li>
+    <li class="tutorial" id="jquery"> jquery </li>
+    <li class="tutorial" id="PHP"> PHP </li>
+    <li class="tutorial" id="MYSQL"> MYSQL </li><br>
+  </ul>
+
+<div id="button">  
+<p><button class="btn1">#jquery</button> - id선택자</p> 
+<p><button class="btn2">.tutorial</button> - class선택자</p> 
+<p><button class="btn3">li</button> - 엘리먼트선택자</p> 
+<p><button class="btn4">#jquery, #MYSQL </button> - 다중선택자</p> 
+</div> 
+</div>
+
+
+
+
+
+
+
+<div id="filter">
+<h3>filter</h3>
+<ul id="list">
+  <li> HTML </li>
+  <li> CSS </li>
+  <li> javascript </li>
+  <li> jquery </li>
+  <li> PHP </li>
+  <li> MYSQL </li><br>
+</ul> 
+<div id="button">  
+<p><button class="btn5">#list li:eq(2)</button> - 인자와 인덱스가 동일한 멜리먼트를 찾아내는 선택자</p> 
+<p><button class="btn6">#list li:gt(1)</button> - 인자보다 인덱스가 동일한 엘리먼트를 찾아내는 선택자</p> 
+<p><button class="btn7">#list li:lt(2)</button> - 인자보다 인덱스가 작은 엘리먼트를 찾아내는 선택자</p> 
+<p><button class="btn8">#list li:even</button> - 첫번째, 세번째... 홀 수의 인덱스 값을 가진 엘리먼트에 대한 선택자</p>
+<p><button class="btn9">#list li:odd</button> - 두번째, 네번째... 짝 수의 인덱스 값을 가진 엘리먼트에 대한 선택자</p> 
+<p><button class="btn10">#list li:first</button> - 첫번째 인덱스 엘리먼트에 대한 선택자</p> 
+<p><button class="btn11">#list li:last</button> - 마지막 인덱스 엘리먼트에 대한 선택자</p>  
+</div> 
+</div>
+
+
+
+
+
+
+
+<div id="property">
+<h3>속 성</h3>
+<ul id="attribute">
+   <li target="ABCD"> ABCD </li>
+   <li target="BCDE"> BCDE </li>
+   <li target="CDEF"> CDEF </li>
+   <li target="DEFG"> DEFG </li>
+   <li target="EFGH"> EFGH </li>
+   <li target="FGHI" id="FGHI"> FGHI </li><br>
+</ul> 
+<div id="button">  
+<p><button class="btn12">[target*="BC"]</button> - 속성의 값에 주어진 문자열이 포함되는 엘리먼트를 찾아내는 선택자</p> 
+<p><button class="btn13">[target="DEFG"]</button> - 속성의 값에 주어진 문자열이 포함되는 엘리먼트를 찾아내는 선택자</p> 
+<p><button class="btn14">[target!="DEFG"]</button> - 속성의 값과 주어진 문자열이 일치하지 않는 엘리먼트를 찾아내는 선택자</p> 
+<p><button class="btn15">[target^="B"]</button> - 속성의 값으로 주어진 문자열이 처음 등장하는 엘리먼트를 찾아내는 선택자</p>
+<p><button class="btn16">[target$="H"]</button> - 속성의 값으로 주어진 문자열이 마지막으로 등장하는 엘리먼트를 찾아내는 선택자</p> 
+<p><button class="btn17">[target]</button> - 속성이 존재하는 엘리먼트를 찾아내는 선택자</p> 
+<p><button class="btn18">[target][id]</button> - 속성들이 존재하는 엘리먼트를 찾아내는 선택자 </p>  
+</div> 
+</div>
+
+
+
+
+
+
+<div id="form">
+<h3>Form</h3>
+<div>
+<input type="text" disabled="disabled" value="disabled">
+<input type="text" value="enabled">
+</div>
+<div><input type="checkbox" checked="checked"></div>
+<div><input type="checkbox"></div>
+
+
+<div id="button">  
+<p><button class="btn19">[type="text"]</button> - 폼 엘리먼트를 선택할 때는 속성 셀렉터를 사용한다.</p> 
+<p><button class="btn20">[type="text"]:disabled</button> - disabled 속성의 값이 disabled인 엘리먼트를 찾아내는 선택자</p> 
+<p><button class="btn21">[type="text"]:enabled</button> - enabled속성의 값이 enabled인 엘리먼트를 찾아내는 선택자</p> 
+<p><button class="btn22">input:checked</button> - 체크박스 중 체크가 된 엘리먼트를 찾아내는 선택자</p>
+</div> 
+</div>
+</div>
+
+
+
+</body></html>

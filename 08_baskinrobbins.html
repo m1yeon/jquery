@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>배스킨라빈스 메인페이지</title>
+  <!-- 초기화 서식 -->
+  <link rel="stylesheet" href="./css/reset.css">
+
+  <style>
+    body{
+      font-family: "나눔 고딕",arial, sans-serif;
+      font-size: 16px;
+      color: #333;
+    }
+
+    /* header서식 */
+    header{
+      width: 100%; 
+      border-top:3px solid #ff7c98;
+      background-image:url('./images/bg_header.gif');
+    }
+
+    #header_top, #header_bottom{
+      width: 1200px; margin: 0px auto;
+    }
+
+    #header_top h1{
+      padding: 15px 0px;
+      text-align: center;
+    }
+
+    #header_bottom{
+      width: 100%; height: 46px;
+      border-top: 1px solid #ccc;
+      border-bottom: 1px solid #aaa;
+      background-color: #fff;
+      overflow: hidden;
+    }
+    #header_bottom > nav{
+      width: 1200px;
+      margin: 0px auto;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    #header_bottom > nav > ul{
+      display: flex;
+    }
+
+    #header_bottom .lnb{
+      width: 200px;
+    }
+    #header_bottom .lnb > li{
+      line-height: 46px;
+      padding-left: 30px;
+    }
+    #header_bottom .lnb > li > a{
+      font-size: 14px; font-weight: bold;
+    }
+
+
+    #header_bottom .gnb{
+      width: 1000px;
+      justify-content: space-around;
+    }
+    #header_bottom .gnb > li{
+      line-height: 46px;
+      text-align: center;
+      position: relative;
+    }
+    #header_bottom .gnb > li > a{
+      font-size: 16px; font-weight: bold; 
+      color: #3c0a0a;
+    }
+
+    #header_bottom::after{
+      display: block;
+      content: "";
+      width: 100%;
+      height: 1px;
+      background: #aaa;
+      position: absolute;
+      top: 178px;
+      transition: 0.3s;
+      opacity: 0;
+    }
+
+    #header_bottom:hover::after{
+      opacity: 1;
+    }
+
+
+  </style>
+</head>
+<body>
+  <header>
+    <div id="header_top">
+      <h1>
+        <a href="08_baskinrobbins.html" title="메인페이지 바로가기">
+          <img src="./images/logo_baskinrobbins.png" alt="배라 로고">
+        </a>
+      </h1>
+    </div>
+
+    <div id="header_bottom">
+      <nav>
+        <ul class="lnb">
+          <li><a href="login.html" title="로그인">LOGIN</a></li>
+          <li><a href="join.html" title="회원가입">JOIN</a></li>
+        </ul>
+
+        <ul class="gnb">
+          <li><a href="#" title="">FLAVOR OF THE MONTH</a>
+            <ul class="sub">
+              <li><a href="신제품"></a><a href="#" title=""><img src="./images/img_monthly_fom_220930.png" alt=""></a></li>
+            </ul>
+          </li>
+
+          <li><a href="#" title="">MENU</a>
+            <ul class="sub">
+              <li><a href="#" title="아이스크림">아이스크림</a></li>
+              <li><a href="#" title="아이스크림 케이크">아이스크림 케이크</a></li>
+              <li><a href="#" title="음료">음료</a></li>
+              <li><a href="#" title="커피">커피</a></li>
+              <li><a href="#" title="디저트">디저트</a></li>
+            </ul>
+          </li>
+
+          <li><a href="#" title="">영양 성분 및 알레르기</a></li>
+
+          <li><a href="#" title="">STORE</a>
+            <ul class="sub">
+              <li><a href="#" title="">매장찾기</a></li>
+              <li><a href="#" title="">고객센터</a></li>
+            </ul>
+          </li>
+
+          <li><a href="#" title="">ABOUT</a>
+            <ul class="sub">
+              <li><a href="#" title="공지사항">공지사항</a></li>
+              <li><a href="#" title="보도자료">보도자료</a></li>
+              <li><a href="#" title="채용정보">채용정보</a></li>
+              <li><a href="#" title="점포설개문의">점포설개문의</a></li>
+              <li><a href="#" title="CONTACT US">CONTACT US</a></li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+   <!-- 제이쿼리 라이브러리 -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+  <script>
+    $(document).ready(function(){
+      //사용자가 gnb에 마우스 오버시 header-bottom의 높이가 커지면서 서브가 보이게 하고
+      $('.gnb').mouseenter(function(){
+        $('#header_bottom').stop().animate({'height':'320px'},500);
+      });
+      //컴퓨터에 q라는 메모리 공간으로 내 동작 횟수를 기억해서 지 혼자 왔다갔다함 그래서 그거 안되게 
+      //.stop()메서드로 한 번만 동작하게 해줌
+        
+      $('.gnb').mouseleave(function(){
+        $('#header_bottom').stop().animate({'height':'46px'},500);
+      });
+
+      //마우스 아웃시 header_bottom의 높이가 원래대로(46px)이 되면 서브가 사라짐
+
+    });
+
+
+  </script>
+</body>
+</html>
