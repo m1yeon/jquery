@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>12_제이쿼리_문서객체조작_내용추가메서드</title>
+  <style>
+    ul{border: 3px solid #000;}
+    ul li{line-height: 25px;}
+    .list01 li{padding-bottom: 15px;}
+
+    .box01{
+      background: #ccc; display: block; 
+      width: 1000px; height: 70px;
+      line-height: 35px;
+    }
+  </style>
+
+
+  <!-- 제이쿼리 라이브러리 -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+
+  <script>
+    $(document).ready(function(){
+
+      $('#btn01').click(function(){
+        $('.list01').append('<li>append로 내용 추가하기');
+            });
+
+      $('#btn02').click(function(){
+        $('.list01').prepend('<li>prepend로 내용 추가하기</li>');
+      });
+
+      $('#btn03').click(function(){
+        $('.list01').after('<li>after로 내용 추가하기</li>');
+      });
+
+      $('#btn04').click(function(){
+        $('.list01').before('<li>before로 내용 추가하기</li>');
+      });
+
+      $('#btn05').click(function(){
+        $('.box01').remove();
+      });
+
+      $('#btn06').click(function(){
+        $('.box01').empty();
+      });
+
+    });
+  </script>
+
+</head>
+<body>
+  <h2>문서객체조작_3. 내용추가메서드</h2>
+  <p>DOM(문서객체모델)에서 문서안의 요소에 내용을 추가하거나 삭제를 할 수 있다.</p>
+  <p>실시간 순위 목록, 이미지 갤러리 누르면 창 나오게 하기</p>
+  <ul class="list01">
+    <li>append();<br> : 사용자가 선택한 요소를 기준으로 안쪽 (부모 박스의 안쪽 형제 요소로 추가됨)으로 맨 뒤쪽에 내용을 추가</li>
+    <li>prepend();<br> : 사용자가 선택한 요소를 기준으로 안쪽 (부모 박스의 안쪽 형제 요소로 추가됨)으로 맨 앞쪽에 내용을 추가</li>
+    <li>after();<br> : 사용자가 선택한 요소를 기준으로 바깥쪽 (부모 박스의 바깥쪽 _ 부모 요소의 형제로 추가됨)으로 맨뒤에 내용을 추가</li>
+    <li>before();<br> : 사용자가 선택한 요소를 기준으로 바깥쪽 (부모 박스의 바깥쪽 _ 부모 요소의 형제로 추가됨)으로 맨앞에 내용을 추가</li>
+  </ul>
+  <input type="button" value="append();" id="btn01">
+  <input type="button" value="prepend();" id="btn02">
+  <input type="button" value="after();" id="btn03">
+  <input type="button" value="before();" id="btn04">
+
+  <p>insertAfter();, insertBefore(); 를 사용하면 A라는 요소의 앞쪽에 B라는 요소를 배치할 수 있고, B라는 요소의 뒤쪽에 A요소를 배치할 수도 있다. after();, before(); 메소드와 기능은 같지만 사용법이 다름</p>
+  <p>
+    $('A').after('B'); - A요소의 바깥쪽으로 뒤에 B내용을 추가한다. <br>
+    $('B').insertAfter('A'); - A요소의 바깥쪽으로 뒤에 B내용을 추가한다. 
+  </p>
+
+  <p>문서객체조작 _ 4. 내용 삭제 메서드(remove)</p>
+  <p>사용자가 선택한 요소의 내용만 제거하거나, 아예 태그요소를 삭제할 수 있다.</p>
+  <ul class="list02">
+    <li>remove(); : 사용자가 선택한 요소를 제거</li>
+    <li>empty(); : 사용자가 선택한 요소의 내용만 제거</li>
+  </ul>
+
+  <div class="box01">
+    아래 remove버튼을 클릭하면 이 박스요소가 제거됩니다.<br>
+    아래 empty버튼을 클릭하면 이 박스요소 안에 있는 내용만 제거됩니다.
+  </div>
+
+  <input type="button" value="remove();" id="btn05">
+  <input type="button" value="empty();" id="btn06">
+
+
+</body>
+</html>
