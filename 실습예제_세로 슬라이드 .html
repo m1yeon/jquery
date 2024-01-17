@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>16_이벤트 슬라이드 구현하기</title>
+  <!-- 초기화 서식 -->
+  <link rel="stylesheet" href="./css/reset.css">
+
+  <!-- 아이콘폰트 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <style>
+    h2{
+      font-weight: bold;
+      font-size: 24px; 
+      line-height: 50px;
+      text-align: center;
+    }
+    
+    .v_slide{
+      margin: 0 auto;
+      height: 697px; 
+      position: relative;
+      overflow: hidden;
+    }
+    .v_slide > h2{display: none;}
+
+    .slide_wrap{height: 3485px;}
+    .slide_wrap > div{height: 697px;}
+    .slide_wrap > div img{width: 100%;}
+
+    i.fas{
+      position: absolute;
+      font-size: 30px;
+      color: #fff;
+      background: rgba(255,255,255,.5);
+      width: 40px; height: 40px;
+      text-align: center; line-height: 40px;
+      right: 40px;
+      cursor:pointer;
+      z-index: 100;
+    }
+
+    .fa-angle-up{bottom: 100px;}
+    .fa-angle-down{bottom: 40px;}
+  </style>
+</head>
+<body>
+  <h2>16_이벤트 슬라이드 구현하기</h2>
+
+  <article class="v_slide">
+    <div class="slide_wrap">
+      <div><a href="#" title="이벤트1"><img src="./images/slide01.png" alt="이벤트1"></a></div>
+      <div><a href="#" title="이벤트2"><img src="./images/slide02.png" alt="이벤트2"></a></div>
+      <div><a href="#" title="이벤트3"><img src="./images/slide3.jpg" alt="이벤트3"></a></div>
+      <div><a href="#" title="이벤트4"><img src="./images/slide4.jpg" alt="이벤트4"></a></div>
+      <div><a href="#" title="이벤트5"><img src="./images/slide5.jpg" alt="이벤트5"></a></div>
+    </div>
+    <i class="fas fa-angle-up"></i>
+    <i class="fas fa-angle-down"></i>   
+  </article>
+
+  <!-- 제이쿼리 라이브러리 -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+  <script>
+    $(document).ready(function(){
+      // 좌/우 버튼 변수 선언
+      const slbtn = $('.v_slide i.fa-angle-up');
+      const srbtn = $('.v_slide i.fa-angle-down');
+
+
+      //1. 첫번째 슬라이드 앞에 마지막 슬라이드를 배치한다.
+      $('.slide_wrap div:last-child').insertBefore('.slide_wrap div:first-child');
+      //B.insertBefore(A) : A의 앞쪽에 B를 배치한다.
+
+      //2. 첫번째 슬라이드가 가운데 보이도록 왼쪽으로 -1600px 이동해줌
+      $('.slide_wrap').css('margin-top','-697px');
+    
+
+      //3. 위로 이동하기 위한 함수
+      function moveTop(){
+        //왼쪽으로 1칸 이동
+        $('.slide_wrap').animate({'margin-top':'-1394px'},500,function(){
+          //이동한 후 맨 앞 슬라이드를 맨 뒤로 이동시킴
+          $('.slide_wrap div:first-child').insertAfter('.slide_wrap div:last-child');
+          $('.slide_wrap').css('margin-top','-697px');
+        });
+      }
+
+      //4. 아래로 이동하기 위한 함수
+      function moveBottom(){
+        //오른쪽으로 1칸 이동
+        $('.slide_wrap').animate({'margin-top':'0px'},800,function(){
+          //오른쪽 마지막 슬라이드를 왼쪽 첫번째 슬라이드 앞으로 배치
+          $('.slide_wrap div:last-child').insertBefore('.slide_wrap div:first-child');
+          $('.slide_wrap').css('margin-top','-697px');
+        });
+      }
+
+      //함수 5초마다 호출
+      let Timer = setInterval(moveTop, 3500);
+
+      //좌/우 버튼 클릭시 해당 함수 호출하여 슬라이드 움직이게 하기
+      slbtn.click(function(){
+        clearInterval(Timer);
+        moveTop();
+      });
+
+      srbtn.click(function(){
+        clearInterval(Timer);
+        moveBottom();
+      });
+
+      //버그찾기 - 시간객체와 클릭시 함수동작이 겹쳐서 두 번 이동하는 버그가 생김
+      //해결방법 - 좌, 우 버튼 마우스 오버시 시간제거, 마우스 아웃시 다시 시간 생성
+
+      $('.v_slide i.fas').mouseenter(function(){
+        clearInterval(Timer);
+      });
+
+      $('.v_slide i.fas').mouseleave(function(){
+        clearInterval(Timer);
+        Timer = setInterval(moveTop,3000);
+      });
+
+    });
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
