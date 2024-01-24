@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="KO">
+<head>
+	<meta charset="UTF-8">
+	<title>제이쿼리학습_문서객체조작(DOM)_01객체 탐색 p.190</title>
+	<style>
+		.list01{background: skyblue;}
+		.act{border: 3px solid #c00;}
+	</style>
+
+	<!-- 제이쿼리 라이브러리 -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+	<!-- 제이쿼리 연결 -->
+	<script>
+		$(document).ready(function(){
+
+			// 부모요소 찾기
+			$('#btn01').click(function(){
+				$('.list01 li').parent().addClass('act');
+			}); //li의 부모인 <ul>
+
+			$('#btn02').click(function(){
+				$('.list01 li').parents().addClass('act');
+			}); //li의 모든 상위요소 <ul>, <body>, <html>
+			
+			$('#btn03').click(function(){
+				$('.list01 li').parentsUntil('html').addClass('act');
+			}); //li의 상위요소 중 html 전까지 <ul>, <body>
+
+
+			// 자식요소 찾기
+			$('#btn04').click(function(){
+				$('.list02').children().addClass('act');
+			}); //list02 <ul>의 모든 자식요소 <li>
+
+			$('#btn05').click(function(){
+				$('.list02').find('.last').addClass('act');
+			}); //list02의 자식들 중 .last를 찾아줌
+
+
+			// 형제요소 찾기
+			$('#btn06').click(function(){
+				$('.list03 li:first-child').siblings().addClass('act');
+			}); //첫번째 li를 제외한 나머지 형제 요소
+
+			$('#btn07').click(function(){
+				$('.list03 li:first-child').next().css('background-color','lightgreen');
+			}); //첫번째 li의 바로 뒤에 있는 형제 요소
+
+			$('#btn08').click(function(){
+				$('.list03 li:last-child').prev().css('background-color','#ccc');
+			});
+
+			$('#btn09').click(function(){
+				$('.list03 li:last-child').prevUntil('.center').css('background-color','lightgreen');
+			});
+
+
+		});
+	</script>
+</head>
+<body>
+	<h2>제이쿼리학습_문서객체조작(DOM)_01객체 탐색(traversing) p.190</h2>
+	<p>제이쿼리에서는 DOM(문서객체모델)구조에서 원하는 요소를 찾고자 할 때 탐색메소드를 사용할 수 있다.</p>
+	<P>탐색메소드는 기존의 CSS, JQUERY선택자보다 좀더 HTML문서의 요소들을 정확하게 선택할 수 있는 메소드이다.</P>
+	
+	<h3>1. 문서안에서 요소들 중 부모요소 찾기 p.171</h3>
+	<ul class="list01">
+		<li>parent(); - 선택한 요소의 바로 위에 위치한 부모요소를 선택</li>
+		<li>parents(); - 선택한 요소의 바로 위에 있는 모든 부모요소를 선택</li>
+		<li>parentUntil(); -  선택한 요소에서부터 지정한 요소까지 부모요소를 선택</li>
+	</ul>
+<!--	input[type=button value="" id="btn0$"]*3 -->
+	<input type="button" value="parent();" id="btn01">
+	<input type="button" value="parents();" id="btn02">
+	<input type="button" value="parentUntil();" id="btn03">
+	
+	<h3>2. 문서안에서 요소들 중 자식요소 찾기</h3>
+	<ul class="list02">
+			<li>children(); - 선택한 부모요소의 아래 자식요소를 선택.</li>
+			<li class="last">find(); - 선택한 부모요소의 아래에서 해당하는(찾고자하는) 자식요소를 선택</li>
+   </ul>
+   
+  <input type="button" value="children();" id="btn04">
+	<input type="button" value="find();" id="btn05">
+	
+	<h3>3. 문서안에서 요소들 중 형제요소(siblings) 찾기</h3>
+	<ul class="list03">
+		<li>siblings() - 현재요소의 형제관계에 있는 요소를 모두 선택</li>
+		<li>next() - 현재요소의 다음 요소를 선택</li>
+		<li>nextUntil() - 현재요소에서 다음에서 ~전까지를 선택</li>
+		<li class="center">nextAll() - 현재요소의 다음에 있는 모든 요소를 선택</li>
+		<li>prev() - 현재요소의 이전에 있는 요소를 선택</li>
+		<li>prevAll() - 현재요소의 이전에 있는 모든 요소를 선택</li>
+		<li>prevUntil(); - 현재요소의 이전요소 부터 ~ 전까지를 선택</li>
+   </ul>
+   
+   <input type="button" value="siblings();" id="btn06">
+   <input type="button" value="next();" id="btn07">
+   <input type="button" value="prev()" id="btn08">
+   <input type="button" value="prevUntil()" id="btn09">
+   
+	
+</body>
+</html>

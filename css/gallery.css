@@ -1,0 +1,140 @@
+@charset "utf-8";
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap');
+
+*{
+  font-family: "Noto Sans KR", sans-serif;
+}
+
+
+/* gallery 서식 */
+
+.gallery{
+  width: 1200px;
+  margin: 0 auto;
+}
+.gallery h3{
+  text-align: center;
+  line-height: 60px;
+  font-size: 20px;
+}
+
+.g_nav{
+  height: 50px;
+  border-bottom: 3px solid #000;
+}
+
+.g_nav > ul{
+  display: flex;
+  justify-content: center;
+}
+.g_nav > ul > li{
+  margin: 0px 10px;
+}
+
+.g_nav > ul > li > a{
+  font-size: 15px;
+  background: #000;
+  color: #fff;
+  padding: 6px 14px 6px 14px;
+  border-radius: 40px;
+  font-weight: 500;
+}
+
+.act{background: rgb(5, 107, 148) !important;}
+
+
+/* 이미지 목록 서식 */
+.g_list{
+  padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.g_list > li{
+  width: 25%; height: 220px;
+  overflow: hidden;
+  position: relative;
+  text-align: center;
+}
+
+.g_list > li > a{}
+
+
+.g_list > li > a img{
+  width: 100%;
+  height: 100%;
+  transition: 0.35s;
+}
+
+.g_list > li > a:hover img{
+  transform: scale(1.1);
+  opacity: 0.8;
+}
+
+.caption{
+  background: rgba(0,0,0,.7);
+  display: block;
+  line-height: 40px;
+  color: #fff;
+  position: absolute;
+  bottom: -40px; left: 0px;
+  text-indent: 10px;
+  width: 100%;
+  /* transition: 0.3s; */
+}
+
+/* .g_list > li > a:hover .caption{bottom: 0px;} */
+
+.modal{
+  position: fixed;
+  top: 0px; left: 0px;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,.8);
+}
+
+.center{
+  /* background-color: rgba(0,0,0,.7); */
+  background: #efefef;
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+
+}
+
+.center h3{
+  /* color: #fff; */
+  line-height: 30px;
+  text-indent: 5px;
+}
+
+.center img{
+  /* padding-top: 20px; */
+  width: 600px;
+  display: block;
+}
+
+.modal i.fa-solid{
+  font-size: 30px;
+  /* color: #fff; */
+  position: absolute;
+  top: 10px; right: 15px;
+ }
+
+ .modal .p_num{
+  /* color: #fff; */
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+  padding: 8px 0px;
+  font-weight: 500;
+ }
+
+.modal i.fas{
+  position: absolute;
+  top: 50%; transform: translateY(-50%);
+  font-size: 30px;
+  color: #fff;
+}
+.modal i.fa-angle-left{left: -30px;}
+.modal i.fa-angle-right{right: -30px;}

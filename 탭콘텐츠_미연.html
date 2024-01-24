@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>실습예제_탭콘텐츠</title>
+  <style>
+    li{list-style: none;}
+
+    .tab_con1 *{margin: 0px; padding: 0px;}
+    .tab_con1{
+      width: 895px; height: 461px;
+      border: 3px solid #000;
+      position: relative;
+    }
+
+    .tab_con1 > h2{
+      line-height: 46px;
+      font-size: 26px;
+    }
+
+    .tab_con1 > ul{
+      display: flex;
+    }
+
+    .tab_con1 > ul > li{
+      text-align: center;
+      width: 25%;
+    }
+
+    .tab_con1 > ul > li > a{
+      text-decoration: none;
+      color: #333;
+      border-bottom: 1px solid #999;
+      line-height: 50px;
+      display: block;
+    }
+
+
+    .tab_con1 > ul > li > div{
+      position: absolute;
+      bottom: 0px ;left: 0px;
+      height: 363px; width: 100%;
+      display: none;
+    }
+
+    /* 탭메뉴 클릭시 적용되는 메뉴서식 */
+    .act > a{
+      font-weight: bold;
+      border: 1px solid #999;
+      border-bottom: none !important;
+
+    }
+
+    .act > div{display: block!important;}
+
+  </style>
+  
+</head>
+<body>
+  <h2>문서객체조작을 활용한 탭콘텐츠 구현하기</h2>
+  <p>노랑풍선, 네이버... 기타 메뉴 클릭시 해당영역에서만 변경되는 탭메뉴 콘텐츠를 구현해본다.</p>
+
+  <h3>노랑풍선 사이트의 '해외여행패키지 > 괌' 페이지의 탭메뉴 콘텐츠</h3>
+  <p>탭메뉴 콘텐츠는 메뉴 클릭시 해당하는 콘텐츠가 바로 아래 나오면서 기존 콘텐츠는 숨겨지고, 영역안에서만 변경되는 콘텐츠이다.</p>
+  <p>특정영역에서만 보여지기 때문에 좁은 공간에서 많은 콘텐츠를 보여주고자 할 때 사용.</p>
+
+  <dl>
+    <dt>구현방법</dt>
+    <dd>1. html목록태그를 사용하여 목록(li)에 a요소 4개와 div요소를 사용하여 콘텐츠 영역 4개 만들고, css를 활용하여 첫번째 콘텐츠만 보이도록 스타일 서식 지정한다.</dd>
+    <dd>2. tab메뉴(a요소)를 클릭하면 해당 콘텐츠(div)가 보이도록 하고, 나머지 콘텐츠들은 숨긴다. 이때 addClass()메소드를 사용한다.</dd>
+    <dd>3. 메뉴 서식은 선택한 메뉴에만 적용되도록 하고, 그외 나머지 메뉴는 적용된 서식을 제거한다.(removeClass)</dd>
+  </dl>
+  <p>사용할 메서드 - addClass(), removeClass(), siblings(), find(), css()</p>
+
+<!-- 895*461    46, 50, 355 -->
+  <article class="tab_con1">
+    <h2>테마로 만나는 패키지 여행</h2>
+    <ul>
+      <li class="act">
+        <a href="#" title="소아동반">소아동반</a>
+        <div class="con01">
+          탭메뉴 콘텐츠 내용이 들어가는 박스
+        </div>
+      </li>
+
+      <li>
+        <a href="#" title="워터파크">워터파크</a>
+        <div>
+          탭메뉴 콘텐츠 내용이 들어가는 박스
+        </div class="con02">
+      </li>
+
+      <li>
+        <a href="#" title="가성비갑">가성비갑</a>
+        <div class="con03">
+          탭메뉴 콘텐츠 내용이 들어가는 박스
+        </div>
+      </li>
+
+      <li>
+        <a href="#" title="시내중심">시내중심</a>
+        <div class="con04">
+          탭메뉴 콘텐츠 내용이 들어가는 박스
+        </div>
+      </li>
+    </ul>
+  </article>
+
+
+  <h3>미에로 화이버 사이트의 탭콘텐츠</h3>
+  <article>
+    <h3>당신이 몰랐던 식이섬유</h3>
+    <ul>
+      <li><a href="#" title="">탭메뉴1</a><div>콘텐츠01내용</div></li>
+      <li><a href="#" title="">탭메뉴2</a><div>콘텐츠02내용</div></li>
+      <li><a href="#" title="">탭메뉴3</a><div>콘텐츠03내용</div></li>
+    </ul>
+  </article>
+
+</body>
+</html>
