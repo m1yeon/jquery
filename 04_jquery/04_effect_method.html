@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JQUERY_04_제이쿼리 효과메서드(effect)</title>
+  <link rel="stylesheet" href="./css/document_base.css" type="text/css">
+  <script src="./script/jquery-3.7.1.js"></script>
+  <!-- 제이쿼리 라이브러리 연결하기 -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+
+  <style>
+    /* 공통서식 */
+    h2{display: inline-block;padding: 0px 20px; transform: translateY(3px);}
+    /* h3{padding: 0px 0px 0px 0px;} */
+    .box{
+      background: #eee;
+      padding: 20px 20px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+    } 
+    .p01{padding-top: 15px;}
+    pre{background: #333; color: #fff; font-size: 14px; padding: 20px; box-sizing: border-box; border-radius: 12px; margin: 15px 0px 20px 0px; width: 100%;}
+    .c01{color: aquamarine;}
+    .c_img{width: 600px; padding-top: 15px;}
+    .img_box{width: 90%; margin:0px auto;}
+    /*  */
+    .banner{
+      width: 450px;
+      height: 450px;
+      border-radius: 15px;
+      overflow: hidden;
+    }
+    .banner img{width: 100%; vertical-align: top;}
+    input{padding: 2px 4px;}
+  </style>
+
+
+
+<script>
+  $(document).ready(function(){ //html 문서가 로딩이 끝나면 제이쿼리를 시작한다.
+    // const b1, b2, b3, b4, b5, b6, b7, b8, b9, b10; const 로 변수를 여러개 선언할 수 없음. 하나씩 써야함
+    let b1, b2, b3, b4, b5, b6, b7, b8, b9, b10;
+
+    b1 = $('#btn01');
+    b2 = $('#btn02');
+    b3 = $('#btn03');
+    b4 = $('#btn04');
+    b5 = $('#btn05');
+    b6 = $('#btn06');
+    b7 = $('#btn07');
+    b8 = $('#btn08');
+    b9 = $('#btn09');
+    b10 = $('#btn010');
+
+    // show 일단 숨겨져 있는 상태에서 시작 
+    b1.click(function(){
+      $('.banner').show();
+    });
+
+    //hide 
+    b2.on('click dblclick',(function(){
+      $('.banner').hide();
+    }));
+
+    //toggle - show + hide 
+    b3.click(function(){
+      $('.banner').toggle(); 
+    });
+
+    //slideUp
+    b4.click(function(){
+      $('.banner').slideDown(); 
+    });
+
+    //slideDown
+    b5.click(function(){
+      $('.banner').slideUp(); 
+    });
+
+    //slideToggle - slideUp + slideDown
+    b6.click(function(){
+      $('.banner').slideToggle(); 
+    });
+
+    b7.click(function(){
+      $('.banner').fadeIn(); 
+    });
+
+    b8.click(function(){
+      $('.banner').fadeOut(); 
+    });
+
+    //fadeToggle(fadein+fadeOur)
+    b9.click(function(){
+      $('.banner').fadeToggle(); 
+    });
+
+
+    b10.click(function(){
+      $('.banner').fadeTo(300, 0.5); //시간과 투명도조절하여 희미하게 설정   
+    });
+
+    //효과 메서드 뒤에 괄호에슨 fast, normal(기본값), sloew 값을 설정할 수 있고, 또는 1시간/1000-1초 라는 시간값을 사용할 수 없음
+    //show('fash'). toggle(400), showDown(10000)
+
+  });
+</script>
+</head>
+<body>
+  <a href="../index.html" title="메인페이지 바로가기" class="b_btn">
+    <img src="../images/icon_home.png" alt="icon_home">
+  </a>
+  <h2>04_제이쿼리_효과메서드(effect)</h2>
+  <p class="p01"><b>&#8226; 효과(effect)</b> : 사용자가 지정한 html 요소를 선택하여 숨기거나 나타내기, 페이드 효과, 슬라이드 다운, 업, 애니메이션 기능을 사용하기 위한 메소드들이 있다</p>
+  <ul>
+    <p>&#8226; show(): : 선택한 요소를 보이게 한다.</p>
+    <p>&#8226; hide(); - 선택한 요소를 숨긴다.</p>
+    <p>&#8226; toggle(); - 선택한 요소를 숨기거나 나타낸다.</p>
+    <p>&#8226; slideDown(); - 선택한 요소를 아래로 펼친다.</p>
+    <p>&#8226; slideUp(); - 선택한 요소를 위로 접는다.</p>
+    <p>&#8226; slideToggle(); - 선택한 요소를 아래로 펼치거나 위로 접는다.</p>
+    <p>&#8226; fadeIn(); - 선택한 요소를 서서히 나타낸다.</p>
+    <p>&#8226; fadeout(); - 선택한 요소를 서서히 사라지게한다.</p>
+    <p>&#8226; fadeToggle(); - 선택한 요소를 서서히 나타내거나/사라지게한다.</p>
+    <p>&#8226; fadeTo(); - 선택한 요소를 지정한 시간만큼 서서히 사라지게한다.</p>
+  </ul>
+  <br>
+  <input type="button" value="show()" id="btn01">
+  <input type="button" value="hide()" id="btn02">
+  <input type="button" value="toggle()" id="btn03">
+  <input type="button" value="slideDown()" id="btn04">
+  <input type="button" value="slideUp()" id="btn05">
+  <input type="button" value="slideToggle()" id="btn06">
+  <input type="button" value="fadeIn" id="btn07">
+  <input type="button" value="fadeOut" id="btn08">
+  <input type="button" value="fadeToggle()" id="btn09">
+  <input type="button" value="fadeTo()" id="btn010">
+  <br><br>
+  <div class="banner">
+    <img src="./images/math_banner04.jpg" alt="배너">
+  </div>
+
+</body>
+</html>

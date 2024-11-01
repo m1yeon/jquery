@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="KO">
+<head>
+	<meta charset="UTF-8">
+	<title>제이쿼리학습_문서객체조작(DOM)_01객체 탐색 p.190</title>
+  <title>JQUERY_10_제이쿼리_문서객체조작(DOM)_객체 탐색</title>
+  <link rel="stylesheet" href="./css/document_base.css" type="text/css">
+  <style>
+    /* 공통서식 */
+    h2{display: inline-block;padding: 0px 20px; transform: translateY(3px);}
+    /* h3{padding: 0px 0px 0px 0px;} */
+    .box{
+      background: #eee;
+      padding: 20px 20px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+    } 
+    .p01{padding-top: 15px;}
+    pre{background: #333; color: #fff; font-size: 14px; padding: 20px; box-sizing: border-box; border-radius: 12px; margin: 15px 0px 20px 0px; width: 100%;}
+    .c01{color: aquamarine;}
+    .c_img{width: 600px; padding-top: 15px;}
+		.list01{background: skyblue;}
+		.act{border: 1px solid #c00;}
+
+		input{padding: 4px 8px; margin-top: 15px;}
+		/* 탭메뉴 */
+		
+    .tab_con1 *{margin: 0px; padding: 0px;}
+    .tab_con1{
+      width: 800px; height: 450px;
+			margin: 0px auto;
+      /* border: 2px solid #000; */
+      position: relative;
+    }
+
+    .tab_con1 > h2{line-height: 60px; font-size: 24px;}
+    .tab_con1 > ul{display: flex; border-bottom: 1px solid #dfdfdf;}
+    .tab_con1 > ul > li{text-align: center; width: 25%;}
+    .tab_con1 > ul > li > a{
+      text-decoration: none;
+      color: #333;
+      border-bottom: 1px solid #777;
+      line-height: 50px;
+      display: block;
+    }
+
+    .tab_con1 > ul > li > div{
+      position: absolute;
+      bottom: 0px ;left: 0px;
+			line-height: 400px;
+      height: 398px; width: 100%;
+      display: none;
+			border: 1px solid #777;
+			border-top: none;
+			border-bottom-left-radius: 10px;
+			border-bottom-right-radius: 10px;
+			/* z-index: -1; */
+    }
+
+    .tab_con1 > ul > li > .con01{background: #dfdfdf; display: block!important;}
+    .tab_con1 > ul > li > .con02{background: #dfdfdf;}
+    .tab_con1 > ul > li > .con03{background: #dfdfdf}
+    .tab_con1 > ul > li > .con04{background: #dfdfdf;}
+
+    /* 탭메뉴 클릭시 적용되는 메뉴서식 */
+    .act{
+      font-weight: bold;
+			background: #dfdfdf;
+      border: 1px solid #777;
+      border-bottom: none !important;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+    }
+	</style>
+
+	<!-- 제이쿼리 라이브러리 -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+	<!-- 제이쿼리 연결 -->
+	<script>
+		$(document).ready(function(){
+
+			// 부모요소 찾기
+			$('#btn01').click(function(){
+				$('.list01 li').parent().addClass('act');
+			}); //li의 부모인 <ul>
+
+			$('#btn02').click(function(){
+				$('.list01 li').parents().addClass('act');
+			}); //li의 모든 상위요소 <ul>, <body>, <html>
+			
+			$('#btn03').click(function(){
+				$('.list01 li').parentsUntil('html').addClass('act');
+			}); //li의 상위요소 중 html 전까지 <ul>, <body>
+
+
+			// 자식요소 찾기
+			$('#btn04').click(function(){
+				$('.list02').children().addClass('act');
+			}); //list02 <ul>의 모든 자식요소 <li>
+
+			$('#btn05').click(function(){
+				$('.list02').find('.last').addClass('act');
+			}); //list02의 자식들 중 .last를 찾아줌
+
+
+			// 형제요소 찾기
+			$('#btn06').click(function(){
+				$('.list03 li:first-child').siblings().addClass('act');
+			}); //첫번째 li를 제외한 나머지 형제 요소
+
+			$('#btn07').click(function(){
+				$('.list03 li:first-child').next().css('background-color','lightgreen');
+			}); //첫번째 li의 바로 뒤에 있는 형제 요소
+
+			$('#btn08').click(function(){
+				$('.list03 li:last-child').prev().css('background-color','#ccc');
+			});
+
+			$('#btn09').click(function(){
+				$('.list03 li:last-child').prevUntil('.center').css('background-color','lightgreen');
+			});
+
+
+			// 탭메뉴
+			//1. 탭메뉴 변수선언
+			let tab_mnu = $('.tab_con1 li a');
+
+			//2. 탭메뉴 클릭시 해당요소의 다음요소(동색) div를 보이게 한다.
+			tab_mnu.click(function(){
+				//$('.tab_con1 div').hide(); //현재 보이는 div태그는 숨기고
+				//$(this).next().show(); //해당요소의 다음 div 태그를 보이게 해줌
+
+				//사용자가 선택한 a의 다음 div를 나오게 하고 a의 부모(li)의 형제요소
+				$(this).next().show().parent().siblings().find('div').hide();
+
+				//사용자가 선택한 a태그에 act서식을 적용하고 선택하지 않은 다른 lidml a태그는 act서식 제거
+				$(this).addClass('act').parent().siblings().find('a').removeClass('act');
+
+				return false;
+});
+		});
+	</script>
+</head>
+<body>
+	<a href="../index.html" title="메인페이지 바로가기" class="b_btn">
+    <img src="../images/icon_home.png" alt="icon_home">
+  </a>
+	<h2>10_제이쿼리_문서객체조작(DOM)_객체 탐색</h2>
+	<p class="p01">&#8226; 제이쿼리에서는 DOM(문서객체모델) 구조에서 원하는 요소를 찾고자 할 때 탐색 메소드를 사용 할 수 있음</p>
+	<p>&#8226; 탐색 메소드는 기존의 CSS, JQUERY 선택자 보다 좀 더 html 문서의 요소들을 정확하게 선택 할 수 있는 메소드</p>
+
+	<div class="box">
+		<h3>1. 문서 안에서 요소들 중 부모 요소 찾기</h3>
+		<ul class="list01">
+			<li>&#8226; <b>parent();</b> : 선택한 요소의 바로 위에 위치한 부모 요소를 선택</li>
+			<li>&#8226; <b>parents();</b> : 선택한 요소의 바로 위에 있는 모든 부모 요소를 선택</li>
+			<li>&#8226; <b>parentUntil();</b> : 선택한 요소에서부터 지정한 요소까지 부모 요소를 선택</li>
+		</ul>
+		<input type="button" value="parent();" id="btn01">
+		<input type="button" value="parents();" id="btn02">
+		<input type="button" value="parentUntil();" id="btn03">
+	</div>
+
+	<div class="box">
+		<h3>2. 문서 안에서 요소들 중 자식 요소 찾기</h3>
+		<ul class="list02">
+			<li>&#8226; <b>children();</b> : 선택한 부모 요소의 아래 자식 요소를 선택</li>
+			<li>&#8226; <b>find();</b> : 선택한 부모 요소의 아래에서 해당하는 (찾고자하는) 자식 요소를 선택</li>
+		</ul>
+		<input type="button" value="children();" id="btn04">
+		<input type="button" value="find();" id="btn05">
+	</div>
+
+	<div class="box">
+		<h3>3. 문서 안에서 요소들 중 형제 요소(siblings) 찾기</h3>
+		<ul class="list03">
+			<li>&#8226; <b>siblings();</b> : 현재 요소의 형제 관계에 있는 요소를 모두 선택</li>
+			<li>&#8226; <b>next();</b> : 현재 요소의 다음 요소를 선택</li>
+			<li>&#8226; <b>nextUntil();</b> : 현재 요소에서 다음에서 ~전까지를 선택</li>
+			<li class="center">&#8226; <b>nextAll();</b> : 현재 요소의 다음에 있는 모든 요소를 선택</li>
+			<li>&#8226; <b>prev();</b> : 현재 요소의 이전에 있는 모든 요소를 선택</li>
+			<li>&#8226; <b>prevAll();</b> : 현재 요소의 이전에 있는 모든 요소를 선택</li>
+			<li>&#8226; <b>prevUntil();</b> : 현재 요소의 이전 요소부터 ~전까지를 선택</li>
+		</ul>
+		<input type="button" value="siblings();" id="btn06">
+		<input type="button" value="next();" id="btn07">
+		<input type="button" value="prev();" id="btn08">
+		<input type="button" value="prevUntil();" id="btn09">
+	</div>
+
+	<!-- 4. -->
+	<div class="box">
+		<h3>4. 문서객체조작을 활용한 탭콘텐츠 구현하기</h3>
+		<p>&#8226; 탭메뉴 콘텐츠는 메뉴 클릭시 해당하는 콘텐츠가 바로 아래 나오면서 기존 콘텐츠는 숨겨지고, 영역안에서만 변경되는 콘텐츠이다.</p>
+		<p>&#8226; 특정 영역 안에서만 보여지기 때문에 좁은 공간에서 많은 콘텐츠는 보여주고자 할 때 사용함</p>
+		<br>
+		<p><b>구현 방법</b><br>
+		1. HTML 목록 태그를 사용하여 목록(li)에 a요소 4개와 div 요소를 사용하여 콘텐츠 영역 4개를 만들고, CSS를 활용하여 첫번째 콘텐츠만 보이도록 스타일 서식을 지정함<br>
+		2. tab 메뉴(a요소)를 클릭하면 해당 콘텐츠(div)가 보이도록 하고, 나머지 콘텐츠들은 숨겨줌 -> addCLass(); 메소드 사용<br>
+		3. 메뉴 서식은 선택한 메뉴에만 적용되도록 하고, 그 외 나머지 메뉴는 적용된 서식을 제거함 -> removeClass(); 메소드 사용</p>
+		<p><b>사용 메소드</b> : addClass(), removeClass(), siblings(), find(), css()</p>
+		<br>
+		<article class="tab_con1">
+			<!-- <h2>테마로 만나는 패키지 여행</h2> -->
+			<ul>
+				<li>
+					<a href="javascript:void(0)" title="tab1" class="act">tab1</a>
+					<div class="con01">
+						탭메뉴 콘텐츠 내용이 들어가는 박스
+					</div>
+				</li>
+	
+				<li>
+					<a href="javascript:;" title="tab2">tab2</a>
+					<div class="con02">
+						탭메뉴 콘텐츠 내용이 들어가는 박스
+					</div>
+				</li>
+	
+				<li>
+					<a href="#" title="tab3">tab3</a>
+					<div class="con03">
+						탭메뉴 콘텐츠 내용이 들어가는 박스
+					</div>
+				</li>
+	
+				<li>
+					<a href="#" title="tab4">tab4</a>
+					<div class="con04">
+						탭메뉴 콘텐츠 내용이 들어가는 박스
+					</div>
+				</li>
+			</ul>
+		</article>
+		<pre>
+			<span class="c01">//1. 탭메뉴 변수선언</span>
+			let tab_mnu = $('.tab_con1 li a');
+
+			<span class="c01">//2. 탭메뉴 클릭시 해당요소의 다음요소(동색) div를 보이게 한다.</span>
+			tab_mnu.click(function(){
+				<span class="c01">//$('.tab_con1 div').hide(); //현재 보이는 div태그는 숨기고</span>
+				<span class="c01">//$(this).next().show(); //해당요소의 다음 div 태그를 보이게 해줌</span>
+
+				<span class="c01">//사용자가 선택한 a의 다음 div를 나오게 하고 a의 부모(li)의 형제요소</span>
+				$(this).next().show().parent().siblings().find('div').hide();
+
+				<span class="c01">//사용자가 선택한 a태그에 act서식을 적용하고 선택하지 않은 다른 lidml a태그는 act서식 제거</span>
+				$(this).addClass('act').parent().siblings().find('a').removeClass('act');
+
+			return false;
+			});</pre>
+	</div>
+</body>
+</html>

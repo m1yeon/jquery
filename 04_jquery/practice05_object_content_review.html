@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JQUERY_실습예제05_내용 변경 메서드 실습예제</title>
+  <link rel="stylesheet" href="./css/document_base.css" type="text/css">
+  <style>
+    /* 공통서식 */
+    h2{display: inline-block;padding: 0px 20px; transform: translateY(3px);}
+    /* h3{padding-bottom: 20px;} */
+
+    .p01{padding-top: 15px;}
+    pre{background: #333; color: #fff; font-size: 14px; padding: 20px; box-sizing: border-box; border-radius: 12px; margin: 15px 0px 20px 0px; width: 100%;}
+    .c01{color: aquamarine;}
+    .c_img{width: 600px; padding-top: 15px;}
+    
+    .main_banner img{vertical-align: top;}
+    .img_box{width: 90%; margin:0px auto;}
+    .main_banner{
+    position: relative;
+    margin: 20px auto;
+    height: 450px;
+    }
+    .main_banner h3{display: none;}
+    .main_banner nav, .mabin_banner #main_img{position: absolute;}
+    .main_banner nav{
+      top: 50%; transform: translateY(-50%);
+      right: 10%;
+    }
+    .main_banner a{
+      display: block;
+      border: 2px solid #fff;
+      transition: 0.5;
+    }
+    .main_banner a:hover{
+      border: 2px solid #346aff;
+    }
+    .main_banner #main_img{width: 100%;}
+  </style>
+</head>
+<body>
+  <a href="../index.html" title="메인페이지 바로가기" class="b_btn">
+    <img src="../images/icon_home.png" alt="icon_home">
+  </a>
+  <h2>실습예제05_내용 변경 메서드 실습예제</h2>
+  <p class="p01">&#8226; 메뉴에 마우스 오버시 해당 메뉴 서식 변경/메인 슬라이드 이미지 변경</p>
+  <article class="main_banner">
+    <h3>쿠팡 메인 슬라이드</h3>
+    <nav>
+      <ul>
+        <li><a href="./images/coupang_m01.jpg" title="메인1">
+          <img src="./images/coupang_n01.jpg" alt="메인1">
+        </a></li>
+        <li><a href="./images/coupang_m02.jpg" title="메인2">
+          <img src="./images/coupang_n02.jpg" alt="메인2">
+        </a></li>
+        <li><a href="./images/coupang_m03.jpg" title="메인3">
+          <img src="./images/coupang_n03.jpg" alt="메인3">
+        </a></li>
+        <li><a href="./images/coupang_m04.jpg" title="메인4">
+          <img src="./images/coupang_n04.jpg" alt="메인4">
+        </a></li>
+        <li><a href="./images/coupang_m05.jpg" title="메인5">
+          <img src="./images/coupang_n05.jpg" alt="메인5">
+        </a></li>
+        <li><a href="./images/coupang_m06.jpg" title="메인6">
+          <img src="./images/coupang_n06.jpg" alt="메인6">
+        </a></li>
+      </ul>
+    </nav>
+    <img src="./images/coupang_m01.jpg" alt="메인1" id="main_img">
+  </article>
+  <pre>
+    $(document).ready(function(){
+      <span class="c01">// 변수에 담기</span>
+      let img_src;
+      let main_ban = $('.main_banner nav li a');
+
+      <span class="c01">//카테고리에 마우스 엔터시 </span>
+      main_ban.mouseenter(function(){
+        img_src = $(this).attr('href'); <span class="c01">//변수 img_src에 main.ban의 a태그의 href 속성을 담아줌</span>
+        console.log(img_src); /<span class="c01">/잘 나오는지 테스트</span>
+
+        $('#main_img').attr('src',img_src); <span class="c01">//main_img의 src속성을 변경해줌 -> 변수 img_src에 담긴 내용으로</span>
+      });
+    });</pre>
+
+  <!-- 제이쿼리 라이브러리 -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+
+  <script>
+    $(document).ready(function(){
+      // 변수에 담기
+      let img_src;
+      let main_ban = $('.main_banner nav li a');
+
+      //카테고리에 마우스 엔터시 
+      main_ban.mouseenter(function(){
+        img_src = $(this).attr('href'); //변수 img_src에 main.ban의 a태그의 href 속성을 담아줌
+        console.log(img_src); //잘 나오는지 테스트
+
+        $('#main_img').attr('src',img_src); //main_img의 src속성을 변경해줌 -> 변수 img_src에 담긴 내용으로
+      });
+    });
+  </script>
+</body>
+</html>

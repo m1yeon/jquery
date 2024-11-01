@@ -1,0 +1,156 @@
+@charset "utf-8";
+
+/* 메인 레이아웃 */
+header{
+  width: 100%;
+  background: #F3843C;
+  
+}
+.h_top{
+  height: 30px;
+  font-size: 13px;
+  font-weight: 300;
+  width: 1200px;
+  position: relative;
+  margin: 0px auto;
+}
+.h_top > span{position: absolute; line-height: 40px;}
+.h_top_inner01{left: 0px;}
+.h_top_inner02{right: 0px;}
+
+.h_bottom{
+  width: 1200px; height: 100px;
+  margin: 20px auto 40px auto;
+}
+
+.h_bottom > li{
+  display: none;
+  width: 1200px;
+}
+
+.h_bottom > li:first-child{
+  display: block;
+}
+
+
+.h_bottom > li > h2{
+  font-size: 80px;
+  font-weight: 800;
+  line-height: 100px;
+  display: inline;
+  color: #222222;
+}
+.h_bottom > li > p{
+  font-size: 14px;
+  line-height: 24px;
+  padding: 24px 20px;
+  display: inline-block; width: 50%;
+}
+
+/* h_nav */
+.h_nav{
+  border-bottom: 1px solid #333;
+}
+
+.h_nav > ul{
+  display: flex;
+  width: 1200px;
+  margin: 0 auto;
+}
+
+.h_nav > ul > li > a{
+  display: block;
+  text-align: center;
+}
+
+.tab_wrap{
+  position: relative;
+  margin: 0px -4px;
+  width: 201px;
+  overflow: hidden;
+  border-radius: 10px 0 0 0;
+  border-left: 1px solid #333;
+  border-bottom: 1px solid #333;
+  height: 40px;
+  bottom: -1px;
+}
+
+.tab{
+  background: #fdfcf7;
+  display: block;
+  width: 220px;
+  height: 40px;
+  border-radius: 0 10px 0 0;
+  transform: 
+    skew(25deg)
+    translate(-30px, 0px);
+  border: 1px solid #333;
+}
+
+.tab_title{
+  position: absolute;
+  line-height: 44px;
+  left: 15px;
+  color: #333;
+  z-index: 6;
+}
+
+.h_nav > ul > li:first-child{z-index: 5;}
+.h_nav > ul > li:nth-child(2){z-index: 4;}
+.h_nav > ul > li:nth-child(3){z-index: 3;}
+.h_nav > ul > li:nth-child(4){z-index: 2;}
+.h_nav > ul > li:last-child{z-index: 1;}
+
+.act{
+  border-bottom:1px solid #fdfcf7;
+  z-index: 6!important;
+}
+
+
+/* main 서식 */
+body, main{
+  background: #fdfcf7;
+}
+
+/* main_list서식 */
+div.list{
+  width: 1200px;
+  margin: 40px auto;
+  display: block;
+}
+
+div.html_list{display: block;}
+
+.list > ul{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.list > ul > li{
+  margin-bottom: 20px;
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.list > ul > li > a{
+  display: inline-block;
+  width: 224px;
+  height: 224px;
+  padding: 20px;
+  box-sizing: border-box;
+  background: #f4ebdc;
+}
+
+.list .list_txt01{
+  font-size: 13px;
+  font-weight: 300;
+  color: #777;
+  display: block;
+}
+
+.list .list_txt02{
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 200%;
+}

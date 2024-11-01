@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JQUERY_07_제이쿼리_문서객체조작_(1)클래스조작</title>
+  <link rel="stylesheet" href="./css/document_base.css" type="text/css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    /* 공통서식 */
+    h2{display: inline-block;padding: 0px 20px; transform: translateY(3px);}
+    /* h3{padding: 0px 0px 0px 0px;} */
+    .box{
+      background: #eee;
+      padding: 20px 20px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+    } 
+    .p01{padding-top: 15px;}
+    pre{background: #333; color: #fff; font-size: 14px; padding: 20px; box-sizing: border-box; border-radius: 12px; margin: 15px 0px 20px 0px; width: 100%;}
+    .c01{color: aquamarine;}
+    .c_img{width: 600px; padding-top: 15px;}
+    .img_box{width: 90%; margin:0px auto;}
+
+    /* 실습1 */
+    .cbox{
+      margin: 20px 0px;
+      background: #F59AC3;
+      border: 1px solid #333;
+      width: 400px; height: 200px;
+      border-radius: 15px;
+      text-align: center;
+      line-height: 40px;
+      color: #fff;
+    }
+
+    .act{background:#222;}
+
+    input[type=button]{
+      border-radius: 5px;
+      background: #222; color: #fff;
+      padding: 5px 10px;
+    }
+
+    /* 실습2 */
+    aside{
+      position: fixed; top: 0px; right: 0px;
+      transition: 0.5s;
+    }
+    .on1{right: -103px;}
+    aside > i{
+      font-size: 30px; 
+      background: #fff; color: #F59AC3;
+      border: 1px solid #ddd;
+      box-sizing: border-box;
+      width: 30px; text-align: center;
+      padding: 30px 0px;
+      position: absolute; 
+      top: 50%; left: -29px; transform: translateY(-50%);
+      border-top-left-radius: 7px;
+      border-bottom-left-radius: 7px;
+    }
+    .on{
+      transform: rotate(180deg);
+      border-top-left-radius: 0px;
+      border-bottom-left-radius: 0px;
+      border-top-right-radius: 7px;
+      border-bottom-right-radius: 7px;
+      top: 40%;
+    }
+
+    /* 실습3 */
+    .tab_mnu, .c_btn{
+      display: flex;
+      margin: 20px; padding: 0px;
+      list-style: none;
+      gap: 20px;
+    }
+    .tab_mnu li a{color: #333; text-decoration: none;}
+    .c_btn li{
+      width: 15px; height: 15px;
+      border-radius: 50%;
+      border: 1px solid #000;
+    }
+    .on2{background: #F59AC3;}
+    
+  </style>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+  <script>
+    $(document).ready(function(){
+      //1. addClass
+      $('#btn01').click(function(){
+        $('.cbox').addClass('act');
+      });
+
+      //2.removeClass
+      $('#btn02').click(function(){
+        $('.cbox').removeClass('act');
+      });
+
+      //3. toggleClass
+      $('#btn03').click(function(){
+        $('.cbox').toggleClass('act');
+      });
+
+      //4. hasClass 해당 클래스가 있는지의 유무를 알려줌
+      $('#btn04').click(function(){
+        if($('.cbox').hasClass('act')==true){
+          alert('.cbox에 act클래스가 존재합니다.');
+        }else{
+          alert('.cbox에 act클래스가 존재하지 않습니다.')
+        }
+        
+      });
+
+      //5. 
+      $('#btn05').click(function(){
+        $('h2').css('color','#c00');
+      });
+      
+      // 실습2
+      $('i.fa-chevron-right').click(function(){
+        $(this).toggleClass('on');
+        $('aside').toggleClass('on1');
+      });
+
+      // 실습3
+      $('.tab_mnu li a').click(function(){
+        $('.tab_mnu li a').removeClass('on2');
+        $(this).addClass('on2');
+        return false; //제이쿼리 문법에서 a요소의 #기능을 무력화 시킴
+      });
+
+      $('.c_btn li').click(function(){
+        $('.c_btn li').removeClass('on2');
+        $(this).addClass('on2');
+      });
+    });
+  </script>
+</head>
+<body>
+  <a href="../index.html" title="메인페이지 바로가기" class="b_btn">
+    <img src="../images/icon_home.png" alt="icon_home">
+  </a>
+  <h2>07_제이쿼리_문서객체조작_1.클래스조작</h2>
+  <p class="p01">&#8226; 사용자가 선택한 요소에 클래스를 추가하거나 삭제, 또는 클래스가 없는 요소를 찾아서 서식을 적용하는 메소드이다.</p>
+  <p>&#8226; 활용 : 햄버거/X버튼 따로 만들지 않고 햄버거 메뉴 하나만 만들어서 버튼으로 바꿀 수 있음</p>
+  <br>
+  <div class="box">
+    <h3>1. 클래스 조작</h3>
+    <p>&#8226; <b>addClass();</b>: 선택한 요소에 클래스 서식을 추가</p>
+    <p>&#8226; <b>removeClass();</b>: 선택한 요소에 클래스 서식을 제거</p>
+    <p>&#8226; <b>toggleClass();</b>: 선태갛ㄴ 요소에 클래스 서식을 추가+제거</p>
+    <p>&#8226; <b>hasClass();</b>: 선택한 요소에 해당 클래스 이름이 있는지 여부를 판단하여 true, flase 값으로 반환</p>
+    <p>&#8226; <b>class();</b>: 사용자가 선택한 요소에 서식을 적용</p>
+
+    <div class="cbox">
+      <br>아래 버튼을 누르면<br>현재 박스에 서식을<br>적용하거나 제거하기
+    </div>
+    <input type="button" value="addClass적용하기" id="btn01">
+    <input type="button" value="removeClass적용하기" id="btn02">
+    <input type="button" value="toggleClass적용하기" id="btn03">
+    <input type="button" value="hadClass적용하기" id="btn04">
+    <input type="button" value="class적용하기" id="btn05">
+  </div>
+  <!-- 실습1 -->
+  <div class="box">
+    <h3>2. 삼성화재 오른쪽 고정배치된 'quick menu' 구현하기</h3>
+    <p>&#8226; 오른쪽 사이드에 배치되는 요소 = aside</p>
+    <aside>
+      <i class="fa-solid fa-chevron-right"></i>
+      <img src="./images/quick.jpg" alt="퀵메뉴">
+    </aside>
+    <pre>
+      $('i.fa-chevron-right').click(function(){
+        $(this).toggleClass('on');
+        $('aside').toggleClass('on1');
+      });</pre>
+  </div>
+  <!-- 실습2 -->
+  <div class="box">
+    <h3>3. 콘트롤버튼(탭메뉴) 서식 만들기</h3>
+    <p>&#8226; a의 href="#" 기능을 무력화 시켜주는 것 (#은 새로고침 기능이 있기 때문에 무력화 시켜줘야함)</p>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;1. a의 href에#대신 javascript:void(0)을 넣거나,</p>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;2. 제이쿼리에 return false 를 넣어줌</p>
+
+    <ul class="tab_mnu">
+      <li><a href="javascript:void(0)" title="독박투어"  class="on2">독박투어</a></li>
+      <li><a href="#" title="떳다 캡틴김">떳다 캡틴김</a></li>
+      <li><a href="#" title="배틀트립">배틀트립</a></li>
+      <li><a href="#" title="클럽메드 미니클럽">클럽메드 미니클럽</a></li>
+    </ul>
+  
+    <ul class="c_btn">
+      <li class="on2">&nbsp;</li>
+      <li>&nbsp;</li>
+      <li>&nbsp;</li>
+      <li>&nbsp;</li>
+    </ul>
+    <pre>
+      <span class="c01">// css</span>
+      .on2{background: #F59AC3;} 
+      
+      <span class="c01">1. css에 on2 라는 클래스 서식을 만들어 준 뒤
+      2. 제이쿼리로 클릭 버튼에 on2 서식을 추가해줌</span>
+
+      <span class="c01">// jquery</span>
+      $('.tab_mnu li a').click(function(){
+        $('.tab_mnu li a').removeClass('on2');
+        $(this).addClass('on2');
+        return false; <span class="c01">//제이쿼리 문법에서 a요소의 #기능을 무력화 시킴</span>
+      });
+
+      $('.c_btn li').click(function(){
+        $('.c_btn li').removeClass('on2');
+        $(this).addClass('on2');
+      });</pre>
+  </div>
+</body>
+</html> 

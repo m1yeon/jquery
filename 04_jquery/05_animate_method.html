@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JQUERY_05_애니메이트메서드 사용법과 응용</title>
+  <link rel="stylesheet" href="./css/document_base.css" type="text/css">
+  <style>
+    /* 공통서식 */
+    h2{display: inline-block;padding: 0px 20px; transform: translateY(3px);}
+    /* h3{padding: 0px 0px 0px 0px;} */
+    .box{
+      background: #eee;
+      padding: 20px 20px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+    } 
+    .p01{padding-top: 15px;}
+    pre{background: #333; color: #fff; font-size: 14px; padding: 20px; box-sizing: border-box; border-radius: 12px; margin: 15px 0px 20px 0px; width: 100%;}
+    .c01{color: aquamarine;}
+    .c_img{width: 600px; padding-top: 15px;}
+    .img_box{width: 90%; margin:0px auto;}
+    .pre01{width: fit-content;}
+    /*  */
+    .box_wrap{display: flex; gap: 20px;}
+    .box_wrap > .box{width: 50%;}
+    /* 2. circle */
+    #circle{
+      margin-top: 20px;
+      width: 130px; height: 130px;
+      background: yellowgreen;
+      border-radius: 50%;
+      text-align: center; line-height: 130px;
+      position: relative; left: 0px; /*애니메이션으로 움직이기 위해서는 position 속성, 시작할 위치를 줘야함*/
+      margin-bottom: 20px;
+    }
+    #btn01, #btn02{padding: 5px 10px; }
+    #btn01:hover, #btn02:hover{
+      background: #222; color: #fff;
+    }
+
+    /* 3. kakao*/
+    #kakao{
+      position: relative; 
+      width: 147px; border: 2px solid #ccc;
+    }
+    #btn03,#btn04,#btn05,#btn06{width: 35px; height: 35px;}
+
+    /* 4. */
+    .list{padding: 0px; margin: 0px;}
+    .list01 > li{
+      list-style: none;
+      background:#139487; color: #fff;
+      position: relative;
+      left: 0px;
+      margin-bottom: 20px;
+      width: 50px; height: 50px;
+      text-align: center; line-height: 50px;
+    }
+
+    /* 5. */
+    .img01{width: 700px;}
+    .baemin{position: relative; left: 0px; width: 100px;}
+    #order{padding: 5px 10px; margin: 10px 0px 20px 0px;}
+
+  </style>
+
+<!-- 제이쿼리 라이브러리 연결하기 -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+
+<script>
+  $(document).ready(function(){ //document문서의 로딩이 끝나면 제이쿼리를 실행
+
+    //1. 애니 시작 버튼 누르면 box01에 애니메이션 적용되어 움직이게 하기
+    $('#btn01').click(function(){
+      $('#circle').animate({'left':'500px'},1000,function(){ //왼쪽에서 1초동안 500px이동
+      $('#circle').animate({'left':'0px'},2000);
+    }); 
+    });
+
+    //2. 애니 종료 버튼 누르면 box01 애니메이션 멈추기
+    $('#btn02').click(function(){
+      $('#box01').stop();
+    });
+
+
+    // 3. 자바스크립트 절대값을 활용하여 캐릭터 상/하/좌/우 움직이기
+    //50픽셀씩 이동하기
+    let n = 50;
+    $('#btn03').click(function(){ //상
+      $('#kakao').animate({'top':'-='+n},500);
+    });
+
+    $('#btn04').click(function(){ //하
+      $('#kakao').animate({'top':'+='+n},500);
+    });
+
+    $('#btn05').click(function(){ //좌
+      $('#kakao').animate({'left':'-='+n},500);
+    });
+
+    $('#btn06').click(function(){ //우
+      $('#kakao').animate({'left':'+='+n},500);
+    });
+
+    //
+    //4. box에 마우스오버시 순차적으로 애니메이션 적용하기
+    let list = $('.list01 > li');
+    list.hover(function(){ //목록에 마우스 오버시 == mouseover,mouseenter
+      $(this).animate({'left':'500px'},800);
+    },function(){ //마우스 아웃시  == mouseleave, mouseout
+      $(this).animate({'left':'0px'},800);
+    });
+
+    //5. easing값을 사용하여 속도감있는 애니메이션 적용하기
+    $('#order').click(function(){
+      $('#baemin01').animate({'left':'1000px'},1500,'linear'); // Linear 기본(안써도 됨)
+      $('#baemin02').animate({'left':'1000px'},1500,'easeOutQuint');
+      $('#baemin03').animate({'left':'1000px'},1500,'easeOutBounce');
+      $('#baemin04').animate({'left':'1000px'},1500,'easeOutElastic');
+      $('#baemin05').animate({'left':'1000px'},1500,'easeOutExpo');
+    });
+  });
+</script>
+</head>
+<body>
+  <a href="../index.html" title="메인페이지 바로가기" class="b_btn">
+    <img src="../images/icon_home.png" alt="icon_home">
+  </a>
+  <h2>애니메이트메서드 사용법과 응용</h2>
+  <p class="p01">&#8226; 제이쿼리에서는 효과와 애니메이트 메소드를 사용하여 사용자가 선택한 요소를 다양하게 움직이게 만들 수 있다.</p>
+  <br>
+  <div class="box">
+    <h3>1. animate 문법</h3>
+    <pre class="pre01">
+      $('선택한 대상').animate({'속성':'값'},시간,가속도,콜백함수);         </pre>
+      <p>&#8226; 속성 : 값은 css속성과 값을 말하며, '값'에는 자바스크립트 변수나 연산자를 활용 할 수 있음.</p>
+      <p>&#8226; 시간 : 1/1000초 값을 사용할 수 있으며 1초를 의미함.</p>
+      <p>&#8226; 콜백함수(callback function) : 애니메이션 동작이 끝난 뒤 다음 동작을 이어서 실행하고자 할 때 사용</p>
+  </div>
+  <div class="box_wrap">
+    <!-- 2. animate 메소드를 사용하여 박스 움직이게 하기 -->
+    <div class="box">
+      <h3>2. animate메소드를 사용하여 박스 움직이게 하기</h3>
+      <div id="circle">원</div>
+      <input type="button" value="START" id="btn01">
+      <input type="button" value="STOP" id="btn02">
+    </div>
+    <!-- 3. 자바스크립트 절대값을 활용하여 캐릭터 상/하/좌/우 움직이기 -->
+    <div class="box">
+      <h3>3. 자바스크립트 절대값을 활용하여 캐릭터 상/하/좌/우 움직이기</h3><br>
+      <img src="./images/KakaoTalk.gif" alt="튜브" id="kakao"><br>
+      <input type="button" value="&#129121;" id="btn03">
+      <input type="button" value="&#129123;" id="btn04">
+      <input type="button" value="&#129120;" id="btn05">
+      <input type="button" value="&#129122;" id="btn06">
+    </div>
+  </div>
+  <!-- 4. box에 마우스오버시 순차적으로 애니메이션 적용하기  -->
+  <div class="box">
+    <h3>4. box에 마우스오버시 순차적으로 애니메이션 적용하기</h3><br>
+    <ul class="list01">
+      <li>1</li>
+      <li>2</li>
+      <li>3</li>
+      <li>4</li>
+      <li>5</li>
+    </ul>
+  </div>
+  <!-- 5. easing값을 사용하여 속도감있는 애니메이션 적용하기 -->
+  <div class="box">
+    <h3>5. easing값을 사용하여 속도감있는 애니메이션 적용하기</h3>
+    <p>&#8226; jquery.com사이트의 왼쪽 상단  ui탭을 클릭하고 왼쪽 easing메뉴에서 jquery.ui 라이브러리를 찾아 연결하여 사용한다</p>
+    <img src="./참고자료/jquery_easing(가속도).png" alt="easgin" class="img01">
+    <br><input type="button" value="배달주문" id="order"><br>
+
+    <img src="./images/baemin.png" alt="배달하기" id="baemin01" class="baemin"><br>
+    <img src="./images/baemin.png" alt="배달하기" id="baemin02" class="baemin"><br>
+    <img src="./images/baemin.png" alt="배달하기" id="baemin03" class="baemin"><br>
+    <img src="./images/baemin.png" alt="배달하기" id="baemin04" class="baemin"><br>
+    <img src="./images/baemin.png" alt="배달하기" id="baemin05" class="baemin">
+  </div>
+</body>
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JQUERY_14_제이쿼리 쿠키 플러그인</title>
+  <link rel="stylesheet" href="./css/document_base.css" type="text/css">
+  <style>
+    /* 공통서식 */
+    h2{display: inline-block;padding: 0px 20px; transform: translateY(3px);}
+    /* h3{padding: 0px 0px 0px 0px;} */
+    .box{
+      background: #eee;
+      padding: 20px 20px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+    }
+    .p01{padding-top: 15px;}
+    pre{background: #333; color: #fff; font-size: 14px; padding: 20px; box-sizing: border-box; border-radius: 12px; margin: 15px 0px 20px 0px; width: 100%;}
+    .c01{color: aquamarine;}
+    .c_img{width: 600px; padding-top: 15px;}
+    
+    .img1{width: 600px; border: 1px solid #777; border-radius: 15px;}
+
+    /* 모달창 */
+    .p_modal{width: 100%; height: 100%;
+      background: rgba(0,0,0,.5);
+      position: fixed; top: 0px; left: 0px;
+      /* text-align: center; */
+      z-index: 9999;
+    }
+
+    .p_modal > .banner{
+      width: 400px; height: 430px;
+      background: #ED4920;
+      position: absolute; top: 50%; left: 50%; 
+      transform: translate(-50%,-50%);
+      border-radius: 10px; overflow: hidden;
+    }
+
+    .p_modal > .banner img{width: 100%; display: block;}
+
+    .banner > #ch, .banner > #c_btn{position: absolute; }
+    .banner > #ch{left: 5px; bottom: 5px;}
+    .banner > #c_btn{
+      cursor: pointer;
+      bottom: 0px;
+      border: none;
+      background: none;
+      color: #dfdfdf;
+      line-height: 25px;
+      font-size: 12px; font-weight: bold;
+      right: 5px; }
+    .banner > label{color: #dfdfdf;}
+    .banner > label{line-height: 27px; padding-left: 30px;}
+
+  </style>
+
+</head>
+<body>
+  <a href="../index.html" title="메인페이지 바로가기" class="b_btn">
+    <img src="../images/icon_home.png" alt="icon_home">
+  </a>
+  <h2>14_제이쿼리 쿠키 플러그인</h2>
+  <p class="p01">&#8226; jquery-cookie 플러그인은 쿠키를 생성하고 쿠키 만료일을 설정할 수 있는 플러그인이다.</p>
+  <p>&#8226; <b>쿠키(cookie)</b>란, 웹사이트를 방문한 사용자의 소량의 브라우저 정보를 저장할 수 있는 영역 또는 공간을 말한다.</p>
+  <p>&#8226; cdnjs.com에서 cookie를 검색하여 나온 jquery-cookie 플러그인의 uri를 브라우저에 붙여넣기 하여 열어준 뒤<br>나온 코드를 ctrl+s를 눌러 js폴더에 저장해 사용해줌 (자바스크립트 쿠키 플러그인도 있음)</p>
+  <br>
+  <p>&#8226; F12 개발자 도구 - 애플리케이션 - 쿠키에서 생성된 쿠키를 볼 수 있으며, <br>&#8226; 생성된 쿠키를 삭제하고 싶다면 생성된 쿠키 우클릭 - 삭제를 하면 됨</p>
+  <img src="./images/cookie_plugin.JPG" alt="쿠키" class="img1">
+  <br><br>
+  <div class="box">
+    <h3>쿠키 플러그인 사용법</h3>
+    <p>&#8226; 쿠키 생성</p>
+    <pre>
+      <span class="c01">//사용법</span>
+      $.cookie("[cookie name]", "[cookie value]", {expires:[expire date], path: "[save path]"})
+
+      <span class="c01">//예시</span>
+      $.cookie("magic","none",{expires:1, path:"/"}) <span class="c01">//쿠키를 최상위 폴더에 저장하고, 1일 후 자동 소멸</span></pre>
+      
+    <p>&#8226; 쿠키 가져옴</p>
+      <pre>
+      <span class="c01">//사용법</span>
+      $.cookie("[cookie name]", "[cookie value]", {expires:[expire date], path: "[save path]"})
+
+      <span class="c01">//예시</span>
+      $.cookie("magic") <span class="c01">//"magic" 이라는 이름으로 저장된 쿠키의 값을 반환</span></pre>
+
+    <p>&#8226; 쿠키 삭제</p>
+      <pre>
+      <span class="c01">//사용법</span>
+      $.removeCookie("[cookie name]")
+
+      <span class="c01">//예시</span>
+      $.removeCookie("magic") <span class="c01">//"magic" 이라는 이름으로 저장된 쿠키를 삭제함</span></pre>
+  </div>
+
+
+  <!-- 제이쿼리 라이브러리 -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+
+  <!-- 제이쿼리 쿠키 플러그인 -->
+  <script src="./script/jquery.cookie.js"></script>
+  <script>
+    $(document).ready(function(){
+    // 모달 제이쿼리
+    let popup = `
+    <div class="p_modal">
+      <div class="banner">
+        <a href="#" title="banner">
+          <img src="./images/mierohiber/modal.JPG">
+        </a>
+        <input type="checkbox" id="ch">
+        <label for="ch">오늘 하루 열지 않음</label>
+        <input type="button" value="닫기 X" id="c_btn">
+      </div>
+    </div>
+    `
+    $('body').append(popup);
+
+    //현재 브라우저에 쿠키 popup의 값이 none이면 팝업을 나오지 않게 함
+    if($.cookie('popup')=='none'){
+      $('.p_modal').hide();
+    }
+
+    // 체크박스 변수
+    let $ex = $('.p_modal #ch');
+
+    //체크박스에 사용자가 체크를 했는지 하지 않았는지 학인하기 위한 함수 작성
+    function closePopup(){
+      if($ex.is(':checked')){ //체크박스에 체크되었다면
+        $.cookie('popup','none', {expires:1, path:'/'});
+      }
+      $('.p_modal').fadeOut();
+    }
+
+      //닫기 버튼 클릭시 해당 함수를 호출하여 모달윈도 닫기
+      $('.p_modal  #c_btn').click(function(){
+        // $('.p_modal').fadeOut();
+        closePopup();
+      });
+    });
+  </script>
+</body>
+</html>

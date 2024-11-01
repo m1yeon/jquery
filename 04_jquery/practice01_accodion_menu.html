@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JQUERY_실습예제01_2단 내비게이션 구현하기</title>
+  <link rel="stylesheet" href="./css/document_base.css" type="text/css">
+  <!-- 아이콘폰트 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    /* 공통서식 */
+    h2{display: inline-block;padding: 0px 20px; transform: translateY(3px);}
+    /* h3{padding: 0px 0px 0px 0px;} */
+    .box{
+      background: #eee;
+      padding: 20px 20px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+    } 
+    .p01{padding-top: 15px;}
+    pre{background: #333; color: #fff; font-size: 14px; padding: 20px; box-sizing: border-box; border-radius: 12px; margin: 15px 0px 20px 0px; width: 100%;}
+    .c01{color: aquamarine;}
+    .c_img{width: 600px; padding-top: 15px;}
+    .img_box{width: 90%; margin:0px auto;}
+    a{text-decoration: none;;}
+    .gnb{
+      width: 100%; height: 100%;
+      background: #8d988db4;
+    }
+
+    .gnb > ul{
+      width: 400px;
+      margin: 0px auto;
+    }
+    .gnb > ul > li{clear:right; text-indent: 10px; border-bottom: 1px solid#fff;}
+
+    .gnb > ul > li a{color: #333;}
+    .gnb > ul > li a:hover{text-decoration: underline;}
+
+    .gnb > ul > li > a{
+      display: block;
+      width: 100%;
+      line-height: 40px;
+      background-color: #c0d8c0;
+    }
+
+    i.fa-angle-down{
+      float: right;
+      font-size: 1.3rem;padding: 10px 8px;
+    }
+
+    .sub{
+      width: 100%;
+      background: #96a996;
+      display:none
+    }
+    .sub > li > a{
+      display: block;
+      font-size: 0.9rem;
+      line-height: 36px;
+    }
+
+    .act{transform: rotate(180deg) translateX(-10px)!important; }
+  </style>
+
+  <!-- 제이쿼리 라이브러리 -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+
+  <script>
+    $(document).ready(function(){
+      //1.변수선언
+      const mnu = $('.gnb > ul > li > a');
+      
+      //2. 클릭 이벤트 _ 메인 메뉴 클릭시 해당 서브 나오게 하기
+      mnu.click(function(){
+        // alert('클릭'); 
+        //1. 서브메뉴 펼치기 기능 구현
+        // $(this).next().slideToggle();
+        // $(this).find('i').addClass('act'); //부모안에서 자식 요소를 찾을 때는 find() 메서드를 사용
+
+        //2. 아코디언 메뉴
+        $('.sub').slideUp(); //모든 서브 메뉴 위로 접고
+        $(this).next().slideDown(); //선택한 메뉴의 서브만 나오게 함
+        $('i').removeClass('act'); //모든 i태그에 act서식을 제거하고
+        $(this).find('i').addClass('act'); // 선택한 메뉴의 자손 i태그에 act서식을 적용함
+      });
+    });
+  </script>
+</head>
+<body>
+  <a href="../index.html" title="메인페이지 바로가기" class="b_btn">
+    <img src="../images/icon_home.png" alt="icon_home">
+  </a>
+  <h2>실습예제01_모바일 2단 내비게이션 구현하기</h2>
+  <p class="p01">&#8226; 2단 목록을작성하여 스타벅스 모바일 메뉴 클릭시 서브메뉴 펼치기/접기</p>
+  <p>&#8226; 모바일 메뉴목록을 응용하여 '아코디언'메뉴 또는 '질문과 답변'목록 개발 가능</p>
+  
+  <nav  class="gnb">
+    <ul>
+      <li><a href="#" title="메인메뉴1">메인메뉴1 <i class="fas fa-angle-down"></i></a>
+        <ul class="sub">
+          <li><a href="#" title="서브메뉴1">서브메뉴1</a></li>
+          <li><a href="#" title="서브메뉴2">서브메뉴2</a></li>
+          <li><a href="#" title="서브메뉴3">서브메뉴3</a></li>
+        </ul>
+      </li>
+
+      <li><a href="#" title="메인메뉴2">메인메뉴2 <i class="fas fa-angle-down"></i></a>
+        <ul class="sub">
+          <li><a href="#" title="서브메뉴1">서브메뉴1</a></li>
+          <li><a href="#" title="서브메뉴2">서브메뉴2</a></li>
+          <li><a href="#" title="서브메뉴3">서브메뉴3</a></li>
+        </ul>
+      </li>
+
+      <li><a href="#" title="메인메뉴3">메인메뉴3 <i class="fas fa-angle-down"></i></a>
+        <ul class="sub">
+          <li><a href="#" title="서브메뉴1">서브메뉴1</a></li>
+          <li><a href="#" title="서브메뉴2">서브메뉴2</a></li>
+          <li><a href="#" title="서브메뉴3">서브메뉴3</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+  <pre>
+    $(document).ready(function(){
+      <span class="c01">//1.변수선언</span>
+      const mnu = $('.gnb > ul > li > a');
+      
+      <span class="c01">//2. 클릭 이벤트 _ 메인 메뉴 클릭시 해당 서브 나오게 하기</span>
+      mnu.click(function(){
+
+        <span class="c01">//1. 서브메뉴 펼치기 기능 구현</span>
+        $(this).next().slideToggle();
+        $(this).find('i').addClass('act'); <span class="c01">//부모안에서 자식 요소를 찾을 때는 find() 메서드를 사용</span>
+
+        <span class="c01">//2. 아코디언 메뉴_다른 메뉴 클릭시 자동으로 닫힘</span>
+        $('.sub').slideUp(); <span class="c01">//모든 서브 메뉴 위로 접고</span>
+        $(this).next().slideDown(); <span class="c01">//선택한 메뉴의 서브만 나오게 함</span>
+        $('i').removeClass('act'); <span class="c01">//모든 i태그에 act서식을 제거하고</span>
+        $(this).find('i').addClass('act'); <span class="c01">// 선택한 메뉴의 자손 i태그에 act서식을 적용함</span>
+      });
+    });
+  </pre>
+</body>
+</html>

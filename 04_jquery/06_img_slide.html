@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JQUERY_06_콘트롤버튼을 활용한 이미지 슬라이드</title>
+  <link rel="stylesheet" href="./css/document_base.css" type="text/css">
+  <style>
+    /* 공통서식 */
+    h2{display: inline-block;padding: 0px 20px; transform: translateY(3px);}
+    /* h3{padding: 0px 0px 0px 0px;} */
+    .box{
+      background: #eee;
+      padding: 20px 20px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+    } 
+    .p01{padding-top: 15px;}
+    pre{background: #333; color: #fff; font-size: 14px; padding: 20px; box-sizing: border-box; border-radius: 12px; margin: 15px 0px 20px 0px; width: 100%;}
+    .c01{color: aquamarine;}
+    .c_img{width: 600px; padding-top: 15px;}
+    .img_box{width: 90%; margin:0px auto;}
+    .pre01{width: fit-content;}
+    *{margin: 0px; padding: 0px;}
+    ol, ul, li{list-style:none;}
+
+    .study{
+      line-height: 30px;
+      margin: 20px;
+    }
+
+    .study > h2{padding: 10px 0px;}
+
+    #product{
+      width: 350px; height: 450px;
+      border: 3px solid #000;
+      margin: 40px auto;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #product > h2{
+      text-align: center;
+      font-size: 30px;
+      padding : 10px 0px;
+    }
+
+    #product ul{
+      display: flex;
+      width: 1400px;
+      position: absolute; top: 50px;
+    }
+
+    #product ul li{width: 350px; }
+    #product ul li img{width: 100%;}
+
+    .c_btn{
+      display: inline-block;
+      width: 15px; height: 15px;
+      border: 1px solid #000;
+      border-radius: 50%;
+      transform: translateY(350px);
+    }
+
+    .act{
+      background: #000;
+    }
+
+  </style>
+
+</head>
+<body>
+  <a href="../index.html" title="메인페이지 바로가기" class="b_btn">
+    <img src="../images/icon_home.png" alt="icon_home">
+  </a>
+  <h2>06_콘트롤버튼을 활용한 이미지 슬라이드</h2>
+  <p class="p01">&#8226; 이미지 350px 사진 4장을 목록태그를 활용해 가로 배치</p>
+  <p>&#8226; 1번 사진 아래쪽에 span 태그를 사용하여 콘트롤 버튼 모양을 구현</p>
+  <p>&#8226; js나 제이쿼리에서 콘트롤 버튼 클릭시 각각 해당 인덱스값을 구하여 변수에 담음</p>
+  <p>&#8226; 콘트롤 버튼 클릭시 나온 연산값 0, -350, -700, -1050을 각각 구하여 ul 태그의 left값에 대입</p>
+
+  <article id="product">
+    <h2>신제품 출시</h2>
+    <ul>
+      <li><a href="#" title="미에로 화이바"><img src="./images/mierohiber/mcon3_1.png" alt="미에로 화이바"></a></li>
+      <li><a href="#" title="미에로 화이바 스파클링 제로"><img src="./images/mierohiber/mcon3_2.png" alt="미에로 화이바 스파클링 제로"></a></li>
+      <li><a href="#" title="헬씨올리고"><img src="./images/mierohiber/mcon3_3.png" alt="헬씨올리고"></a></li>
+      <li><a href="#" title="헬씨 올리고 프로바이오틱스"><img src="./images/mierohiber/mcon3_4.png" alt="헬씨 올리고 프로바이오틱스"></a></li>
+    </ul>
+
+    <div>
+      <span class="c_btn act">&nbsp;</span>
+      <span class="c_btn">&nbsp;</span>
+      <span class="c_btn">&nbsp;</span>
+      <span class="c_btn">&nbsp;</span>
+    </div>
+  </article>
+  <pre>
+    $(document).ready(function(){
+      <span class="c01">// 1. 콘트롤 버튼 클릭시 인덱스값 0,1,2,3 출력하기</span>
+      let i;
+
+      const cbtn = $('#product div > .c_btn');
+
+      cbtn.click(function(){
+        i = $(this).index();
+        console.log(i); <span class="c01">//출력 테스트 -> 0,1,2,3</span>
+        i = -(i*$('#product ul li').width());
+        console.log(i); <span class="c01">//출력 테스트</span>
+        
+        <span class="c01">//해당값을 목록에 대입하여 슬라이드가 움직이도록 함</span>
+        $('#product ul').animate({'left':i},500);
+
+        <span class="c01">//콘트롤버튼 서식제거하고 현재 콘트롤버튼에 서식적용</span>
+        $('#product div span').removeClass('act');
+        $(this).addClass('act');
+      });
+    });
+  </pre>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+  <script>
+    $(document).ready(function(){
+      // 1. 콘트롤 버튼 클릭시 인덱스값 0,1,2,3 출력하기
+      let i;
+
+      const cbtn = $('#product div > .c_btn');
+
+      cbtn.click(function(){
+        i = $(this).index();
+        console.log(i); //출력 테스트 -> 0,1,2,3
+        i = -(i*$('#product ul li').width());
+        console.log(i); //출력 테스트
+        
+        //해당값을 목록에 대입하여 슬라이드가 움직이도록 함
+        $('#product ul').animate({'left':i},500);
+
+        //콘트롤버튼 서식제거하고 현재 콘트롤버튼에 서식적용
+        $('#product div span').removeClass('act');
+        $(this).addClass('act');
+      });
+    });
+  </script>
+</body>
+</html>

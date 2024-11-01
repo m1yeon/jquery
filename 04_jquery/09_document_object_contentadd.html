@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JQUERY_09_제이쿼리_문서객체조작_(3)내용추가메서드</title>
+  <link rel="stylesheet" href="./css/document_base.css" type="text/css">
+  <style>
+    /* 공통서식 */
+    h2{display: inline-block;padding: 0px 20px; transform: translateY(3px);}
+    /* h3{padding: 0px 0px 0px 0px;} */
+    .box{
+      background: #eee;
+      padding: 20px 20px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+    } 
+    .p01{padding-top: 15px;}
+    pre{background: #333; color: #fff; font-size: 14px; padding: 20px; box-sizing: border-box; border-radius: 12px; margin: 15px 0px 20px 0px; width: 100%;}
+    .c01{color: aquamarine;}
+    .c_img{width: 600px; padding-top: 15px;}
+    .img_box{width: 90%; margin:0px auto;}
+/* 
+    .list01{background: #efefef; border-radius: 15px; padding: 10px 20px; margin: 10px 0px;} */
+    input{padding: 4px 8px;}
+    .list01, .box01{border: 1px solid #333; border-radius: 10px; padding: 10px 20px; margin: 10px 0px;}
+  </style>
+
+
+  <!-- 제이쿼리 라이브러리 -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+
+  <script>
+    $(document).ready(function(){
+
+      $('#btn01').click(function(){
+        $('.list01').append('<li>append로 내용 추가하기');
+            });
+
+      $('#btn02').click(function(){
+        $('.list01').prepend('<li>prepend로 내용 추가하기</li>');
+      });
+
+      $('#btn03').click(function(){
+        $('.list01').after('<li>after로 내용 추가하기</li>');
+      });
+
+      $('#btn04').click(function(){
+        $('.list01').before('<li>before로 내용 추가하기</li>');
+      });
+
+      $('#btn05').click(function(){
+        $('.box01').remove();
+      });
+
+      $('#btn06').click(function(){
+        $('.box01').empty();
+      });
+
+    });
+  </script>
+
+</head>
+<body>
+  <a href="../index.html" title="메인페이지 바로가기" class="b_btn">
+    <img src="../images/icon_home.png" alt="icon_home">
+  </a>
+  <h2>문서객체조작_3. 내용추가메서드</h2>
+  <p class="p01">&#8226; DOM(문서객체모델)에서 문서안의 요소에 내용을 추가하거나 삭제를 할 수 있다.</p>
+  <p>&#8226; 실시간 순위 목록, 이미지 갤러리 누르면 창 나오게 하기</p>
+
+  <div class="box">
+    <h3>1. 내용 추가 메서드</h3>
+    <div class="list01">
+      <p>&#8226; <b>append();</b> : 사용자가 선택한 요소를 기준으로 안쪽 (부모 박스의 안쪽 형제 요소로 추가됨)으로 맨 뒤쪽에 내용을 추가</p>
+      <p>&#8226; <b>prepend();</b> : 사용자가 선택한 요소를 기준으로 안쪽 (부모 박스의 안쪽 형제 요소로 추가됨)으로 맨 앞쪽에 내용을 추가</p>
+      <p>&#8226; <b>after();</b> : 사용자가 선택한 요소를 기준으로 바깥쪽 (부모 박스의 바깥쪽 - 부모 요소의 형제로) 추가됨</p>
+      <p>&#8226; <b>before();</b> : 사용자가 선택한 요소를 기준으로 바깥쪽 (부모 박스의 바깥쪽 - 부모 요소의 형제로 추가됨)으로 맨 앞에 내용을 추가</p>
+    </div>
+    <input type="button" value="append();" id="btn01">
+    <input type="button" value="prepend();" id="btn02">
+    <input type="button" value="after();" id="btn03">
+    <input type="button" value="before();" id="btn04">
+  </div>
+  <div class="box">
+    <h3>2. insertAfter();, insertBefore();</h3>
+    <p>&#8226; <b>insertAfter();, insertBefore();</b> 를 사용하면 A라는 요소의 앞쪽에 B라는 요소를 배치할 수 있고, B라는 요소의 뒤쪽에 A요소를 배치할 수도 있다. </p>
+    <p>&#8226; after();, before(); 메소드와 기능은 같지만 사용법이 다름</p>
+
+    <p>&#8226; $('A').after('B'); - A요소의 바깥쪽으로 뒤에 B내용을 추가한다.</p>
+    <p>&#8226; $('B').insertAfter('A'); - A요소의 바깥쪽으로 뒤에 B내용을 추가한다. </p>
+  </div>
+
+  <div class="box">
+    <h3>3. 내용 삭제 메서드(remove)</h3>
+    <p>&#8226; 사용자가 선택한 요소의 내용만 제거하거나, 아예 태그요소를 삭제할 수 있다.</p>
+    <p>&#8226; <b>remove();</b> : 사용자가 선택한 요소를 제거</p>
+    <p>&#8226; <b>empty();</b> : 사용자가 선택한 요소의 내용만 제거</p>
+    <div class="box01">
+      아래 remove버튼을 클릭하면 이 박스요소가 제거됩니다.<br>
+      아래 empty버튼을 클릭하면 이 박스요소 안에 있는 내용만 제거됩니다.
+    </div>
+    <input type="button" value="remove();" id="btn05">
+    <input type="button" value="empty();" id="btn06">
+  </div>
+</body>
+</html>

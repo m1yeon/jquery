@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JQUERY_실습예제02_애니메이트 메서드 복습하기</title>
+  <link rel="stylesheet" href="./css/document_base.css" type="text/css">
+  <!-- 아이콘폰트 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <!-- 제이쿼리 라이브러리 -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+  <style>
+    /* 공통서식 */
+    h2{display: inline-block;padding: 0px 20px; transform: translateY(3px);}
+    h3{padding-bottom: 20px;}
+    .box{
+      background: #eee;
+      padding: 20px 20px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+    } 
+    .p01{padding-top: 15px;}
+    pre{background: #333; color: #fff; font-size: 14px; padding: 20px; box-sizing: border-box; border-radius: 12px; margin: 15px 0px 20px 0px; width: 100%;}
+    .c01{color: aquamarine;}
+    .c_img{width: 600px; padding-top: 15px;}
+    .img_box{width: 90%; margin:0px auto;}
+
+    /* 1. */
+    .ani_box{
+      background: #fff;
+      border: 2px solid #333;
+      width: 478px; height: 278px;
+      margin: 0px auto;
+      position: relative;
+      overflow: hidden;
+    }
+    .title, .face{position: absolute; opacity: 0;}
+    .title{top: 30px; left:-130px;}
+    .face{right: 0px; bottom: -300px;}
+
+    /* 2 */
+    /* header서식 */
+    a{text-decoration: none;}
+    header{
+      position: relative;
+      /* position: absolute; top: 0px; left: 0px; */
+      width: 100%; 
+      border-top:3px solid #ff7c98;
+      background-image:url('./images/bg_header.gif');
+      z-index: 9000;
+    }
+    #header_top, #header_bottom{
+      width: 100%; margin: 0px auto;
+    }
+    #header_top h1{
+      padding: 15px 0px;
+      text-align: center;
+    }
+    #header_bottom{
+      width: 100%; height: 46px;
+      border-top: 1px solid #ccc;
+      border-bottom: 1px solid #aaa;
+      background-color: #fff;
+      overflow: hidden;
+    }
+    #header_bottom > nav{
+      width: 100%;
+      margin: 0px auto;
+      display: flex;
+      justify-content: space-between;
+    }
+    #header_bottom > nav > ul{display: flex;}
+    #header_bottom .lnb{width: 200px;}
+    #header_bottom .lnb > li{line-height: 46px;padding-left: 30px;}
+    #header_bottom .lnb > li > a{font-size: 14px; font-weight: bold;}
+    #header_bottom .gnb{
+      width: 1000px;
+      justify-content: space-around;
+    }
+    #header_bottom .gnb > li{
+      line-height: 46px;
+      text-align: center;
+      position: relative;
+    }
+    #header_bottom .gnb > li > a{
+      font-size: 16px; font-weight: bold; 
+      color: #3c0a0a;
+    }
+    #header_bottom::after{
+      display: block;
+      content: "";
+      width: 100%;
+      height: 1px;
+      background: #bbb;
+      position: absolute;
+      top: 180px;
+      transition: 0.3s;
+      opacity: 0;
+    }
+    #header_bottom:hover::after{opacity: 1;}
+    .m_flavor > img{width: 140px; padding-top: 20px;}
+
+    /* 메인콘텐츠 서식 */
+    /* main{margin-top: 175px;} */
+    .v_slide{margin: 0 auto; width: 100%; position: relative; overflow: hidden;}
+    .v_slide > h2{display: none;}
+    .slide_wrap{display: flex; width: 500%;}
+    .v_slide > .slide_wrap > div{width: 100%;}
+    .v_slide > .slide_wrap > div img{width: 100%;}
+
+
+    i.fas{
+      position: absolute;
+      font-size: 30px;
+      color: #fff;
+      background: rgba(255,255,255,.35);
+      width: 40px; height: 40px;
+      text-align: center; line-height: 40px;
+      top: 50%;
+      cursor:pointer;
+    }
+    .fa-angle-left{left: 0px;}
+    .fa-angle-right{right: 0px;}
+  </style>
+</head>
+<body>
+  <a href="../index.html" title="메인페이지 바로가기" class="b_btn">
+    <img src="../images/icon_home.png" alt="icon_home">
+  </a>
+  <h2>실습예제02_애니메이트 복습하기</h2>
+  <br><br>
+  <div class="box">
+    <h3>1. 제이쿼리 애니메이트 복습하기</h3>
+    <article class="ani_box">
+      <h3 class="title"><img src="./images/jobs_text.gif" alt="스티브잡스"></h3>
+      <img src="./images/jobs.png" alt="스티브잡스 사진" class="face">
+    </article>
+    <pre>
+      $(document).ready(function(){
+        <span class="c01">//변수에 담기</span>
+        const t = $('.title');
+        const f = $('.face');
+    
+        <span class="c01">//애니메이트 메서드 적용하기</span>
+        t.animate({'left':'30px','opacity':'1'},500);
+        f.delay(100).animate({'bottom':'-10px','opacity':'1'},500);
+      });</pre>
+    <script>
+    $(document).ready(function(){
+      //변수에 담기
+      const t = $('.title');
+      const f = $('.face');
+  
+      //애니메이트 메서드 적용하기
+      t.animate({'left':'30px','opacity':'1'},500);
+      f.delay(100).animate({'bottom':'-10px','opacity':'1'},500);
+    });
+    </script>
+  </div>
+  <div class="box">
+    <h3>2. 배스킨라빈스 내비게이션 구현하기  </h3>
+    <header>
+      <div id="header_top">
+        <h1>
+          <a href="08_baskinrobbins.html" title="메인페이지 바로가기">
+            <img src="./images/logo_baskinrobbins.png" alt="배라 로고">
+          </a>
+        </h1>
+      </div>
+  
+      <div id="header_bottom">
+        <nav>
+          <ul class="lnb">
+            <li><a href="login.html" title="로그인">LOGIN</a></li>
+            <li><a href="join.html" title="회원가입">JOIN</a></li>
+          </ul>
+  
+          <ul class="gnb">
+            <li><a href="#" title="">FLAVOR OF THE MONTH</a>
+              <ul class="sub">
+                <li><a href="신제품"></a><a href="#" title="이달의 맛" class="m_flavor"><img src="./images/img_monthly_fom_220930.png" alt="바나나킥 아이스크림"></a></li>
+              </ul>
+            </li>
+  
+            <li><a href="#" title="">MENU</a>
+              <ul class="sub">
+                <li><a href="#" title="아이스크림">아이스크림</a></li>
+                <li><a href="#" title="아이스크림 케이크">아이스크림 케이크</a></li>
+                <li><a href="#" title="음료">음료</a></li>
+                <li><a href="#" title="커피">커피</a></li>
+                <li><a href="#" title="디저트">디저트</a></li>
+              </ul>
+            </li>
+  
+            <li><a href="#" title="">영양 성분 및 알레르기</a></li>
+  
+            <li><a href="#" title="">STORE</a>
+              <ul class="sub">
+                <li><a href="#" title="">매장찾기</a></li>
+                <li><a href="#" title="">고객센터</a></li>
+              </ul>
+            </li>
+  
+            <li><a href="#" title="">ABOUT</a>
+              <ul class="sub">
+                <li><a href="#" title="공지사항">공지사항</a></li>
+                <li><a href="#" title="보도자료">보도자료</a></li>
+                <li><a href="#" title="채용정보">채용정보</a></li>
+                <li><a href="#" title="점포설개문의">점포설개문의</a></li>
+                <li><a href="#" title="CONTACT US">CONTACT US</a></li>
+              </ul>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+  
+    <main>
+      <article class="v_slide">
+        <div class="slide_wrap">
+          <div><a href="#" title="이벤트1"><img src="./images/slide01.png" alt="이벤트1"></a></div>
+          <div><a href="#" title="이벤트2"><img src="./images/slide02.png" alt="이벤트2"></a></div>
+          <div><a href="#" title="이벤트3"><img src="./images/slide3.jpg" alt="이벤트3"></a></div>
+          <div><a href="#" title="이벤트4"><img src="./images/slide4.jpg" alt="이벤트4"></a></div>
+          <div><a href="#" title="이벤트5"><img src="./images/slide5.jpg" alt="이벤트5"></a></div>
+        </div>
+        <i class="fas fa-angle-left"></i>
+        <i class="fas fa-angle-right"></i>   
+      </article>
+    </main>
+    <pre>
+      $(document).ready(function(){
+        <span class="c01">//사용자가 gnb에 마우스 오버시 header-bottom의 높이가 커지면서 서브가 보이게 하고</span>
+        $('.gnb').mouseenter(function(){
+          $('#header_bottom').stop().animate({'height':'320px'},500);
+        });
+        <span class="c01">//컴퓨터에 q라는 메모리 공간으로 내 동작 횟수를 기억해서 지 혼자 왔다갔다함 그래서 그거 안되게 </span>
+        <span class="c01">//.stop()메서드로 한 번만 동작하게 해줌</span>
+        
+        <span class="c01">//마우스 아웃시 header_bottom의 높이가 원래대로(46px)이 되면 서브가 사라짐</span>
+        $('.gnb').mouseleave(function(){
+          $('#header_bottom').stop().animate({'height':'46px'},500);
+        });
+
+        <span class="c01">//메인 슬라이드</span>
+        const slbtn = $('.v_slide i.fa-angle-left');
+        const srbtn = $('.v_slide i.fa-angle-right');
+
+        <span class="c01">//1. 첫번째 슬라이드 앞에 마지막 슬라이드를 배치한다.</span>
+        $('.slide_wrap div:last-child').insertBefore('.slide_wrap div:first-child');
+        //B.insertBefore(A) : A의 앞쪽에 B를 배치한다.
+  
+        <span class="c01">//2. 첫번째 슬라이드가 가운데 보이도록 왼쪽으로 -1600px 이동해줌</span>
+        $('.slide_wrap').css('margin-left','-100%');
+
+        <span class="c01">//3. 왼쪽으로 이동하기 위한 함수</span>
+        function moveLeft(){
+          <span class="c01">//왼쪽으로 1칸 이동</span>
+          $('.slide_wrap').animate({'margin-left':'-200%'},500,function(){
+            <span class="c01">//이동한 후 맨 앞 슬라이드를 맨 뒤로 이동시킴</span>
+            $('.slide_wrap div:first-child').insertAfter('.slide_wrap div:last-child');
+            $('.slide_wrap').css('margin-left','-100%');
+          });
+        }
+  
+        <span class="c01">//4. 오른쪽으로 이동하기 위한 함수</span>
+        function moveRight(){
+          <span class="c01">//오른쪽으로 1칸 이동</span>
+          $('.slide_wrap').animate({'margin-left':'0%'},800,function(){
+            <span class="c01">//오른쪽 마지막 슬라이드를 왼쪽 첫번째 슬라이드 앞으로 배치</span>
+            $('.slide_wrap div:last-child').insertBefore('.slide_wrap div:first-child');
+            $('.slide_wrap').css('margin-left','-100%');
+          });
+        }
+  
+        <span class="c01">//함수 5초마다 호출</span>
+        let Timer = setInterval(moveLeft, 3500);
+  
+        <span class="c01">//좌/우 버튼 클릭시 해당 함수 호출하여 슬라이드 움직이게 하기</span>
+        slbtn.click(function(){
+          clearInterval(Timer);
+          moveLeft();
+        });
+  
+        srbtn.click(function(){
+          clearInterval(Timer);
+          moveRight();
+        });
+  
+        <span class="c01">//버그찾기 - 시간객체와 클릭시 함수동작이 겹쳐서 두 번 이동하는 버그가 생김</span>
+        <span class="c01">//해결방법 - 좌, 우 버튼 마우스 오버시 시간제거, 마우스 아웃시 다시 시간 생성</span>
+  
+        $('.v_slide i.fas').mouseenter(function(){
+          clearInterval(Timer);
+        });
+  
+        $('.v_slide i.fas').mouseleave(function(){
+          clearInterval(Timer);
+          Timer = setInterval(moveLeft,3000);
+        });
+      });
+    </pre>
+  </div>
+  <script>
+    $(document).ready(function(){
+      //사용자가 gnb에 마우스 오버시 header-bottom의 높이가 커지면서 서브가 보이게 하고
+      $('.gnb').mouseenter(function(){
+        $('#header_bottom').stop().animate({'height':'320px'},500);
+      });
+      //컴퓨터에 q라는 메모리 공간으로 내 동작 횟수를 기억해서 지 혼자 왔다갔다함 그래서 그거 안되게 
+      //.stop()메서드로 한 번만 동작하게 해줌
+        
+      $('.gnb').mouseleave(function(){
+        $('#header_bottom').stop().animate({'height':'46px'},500);
+      });
+
+      //마우스 아웃시 header_bottom의 높이가 원래대로(46px)이 되면 서브가 사라짐
+
+      //------------------------------------------------
+      //메인 슬라이드
+      const slbtn = $('.v_slide i.fa-angle-left');
+      const srbtn = $('.v_slide i.fa-angle-right');
+
+
+      //1. 첫번째 슬라이드 앞에 마지막 슬라이드를 배치한다.
+      $('.slide_wrap div:last-child').insertBefore('.slide_wrap div:first-child');
+      //B.insertBefore(A) : A의 앞쪽에 B를 배치한다.
+
+      //2. 첫번째 슬라이드가 가운데 보이도록 왼쪽으로 -1600px 이동해줌
+      $('.slide_wrap').css('margin-left','-100%');
+    
+
+      //3. 왼쪽으로 이동하기 위한 함수
+      function moveLeft(){
+        //왼쪽으로 1칸 이동
+        $('.slide_wrap').animate({'margin-left':'-200%'},500,function(){
+          //이동한 후 맨 앞 슬라이드를 맨 뒤로 이동시킴
+          $('.slide_wrap div:first-child').insertAfter('.slide_wrap div:last-child');
+          $('.slide_wrap').css('margin-left','-100%');
+        });
+      }
+
+      //4. 오른쪽으로 이동하기 위한 함수
+      function moveRight(){
+        //오른쪽으로 1칸 이동
+        $('.slide_wrap').animate({'margin-left':'0%'},800,function(){
+          //오른쪽 마지막 슬라이드를 왼쪽 첫번째 슬라이드 앞으로 배치
+          $('.slide_wrap div:last-child').insertBefore('.slide_wrap div:first-child');
+          $('.slide_wrap').css('margin-left','-100%');
+        });
+      }
+
+      //함수 5초마다 호출
+      let Timer = setInterval(moveLeft, 3500);
+
+      //좌/우 버튼 클릭시 해당 함수 호출하여 슬라이드 움직이게 하기
+      slbtn.click(function(){
+        clearInterval(Timer);
+        moveLeft();
+      });
+
+      srbtn.click(function(){
+        clearInterval(Timer);
+        moveRight();
+      });
+
+      //버그찾기 - 시간객체와 클릭시 함수동작이 겹쳐서 두 번 이동하는 버그가 생김
+      //해결방법 - 좌, 우 버튼 마우스 오버시 시간제거, 마우스 아웃시 다시 시간 생성
+
+      $('.v_slide i.fas').mouseenter(function(){
+        clearInterval(Timer);
+      });
+
+      $('.v_slide i.fas').mouseleave(function(){
+        clearInterval(Timer);
+        Timer = setInterval(moveLeft,3000);
+      });
+    });
+  </script>
+</body>
+</html>

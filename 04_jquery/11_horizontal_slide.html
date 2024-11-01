@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JQUERY_11_제이쿼리로 가로 슬라이드 구현하기</title>
+  <!-- 아이콘폰트 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <link rel="stylesheet" href="./css/document_base.css" type="text/css">
+  <style>
+    /* 공통서식 */
+    h2{display: inline-block;padding: 0px 20px; transform: translateY(3px);}
+    pre{background: #333; color: #fff; font-size: 14px; padding: 20px; box-sizing: border-box; border-radius: 12px; margin: 15px 0px 20px 0px; width: 100%;}
+    .c01{color: aquamarine;}
+
+    .v_slide{
+      margin: 30px auto;
+      width: 1000px; height: fit-content; 
+      position: relative;
+      overflow: hidden;
+    }
+    .v_slide > h2{display: none;}
+
+    .slide_wrap{
+      display: flex;
+      width: 500%;
+    }
+
+    .slide_wrap > div{width: 100%;}
+    .slide_wrap > div img{width: 100%;}
+
+    i.fas{
+      position: absolute;
+      font-size: 30px;
+      color: #fff;
+      background: rgba(255,255,255,.35);
+      width: 40px; height: 40px;
+      text-align: center; line-height: 40px;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor:pointer;
+    }
+
+    .fa-angle-left{left: 0px;}
+    .fa-angle-right{right: 0px;}
+  </style>
+</head>
+<body>
+  <a href="../index.html" title="메인페이지 바로가기" class="b_btn">
+    <img src="../images/icon_home.png" alt="icon_home">
+  </a>
+  <h2>11_제이쿼리로 가로 슬라이드 구현하기</h2>
+  <article class="v_slide">
+    <div class="slide_wrap">
+      <div><a href="#" title="이벤트1"><img src="./images/slide01.png" alt="이벤트1"></a></div>
+      <div><a href="#" title="이벤트2"><img src="./images/slide02.png" alt="이벤트2"></a></div>
+      <div><a href="#" title="이벤트3"><img src="./images/slide3.jpg" alt="이벤트3"></a></div>
+      <div><a href="#" title="이벤트4"><img src="./images/slide4.jpg" alt="이벤트4"></a></div>
+      <div><a href="#" title="이벤트5"><img src="./images/slide5.jpg" alt="이벤트5"></a></div>
+    </div>
+    <i class="fas fa-angle-left"></i>
+    <i class="fas fa-angle-right"></i>   
+  </article>
+
+  <pre>
+    $(document).ready(function(){
+      <span class="c01">// 좌/우 버튼 변수 선언</span>
+      const slbtn = $('.v_slide i.fa-angle-left');
+      const srbtn = $('.v_slide i.fa-angle-right');
+
+      <span class="c01">//1. 첫번째 슬라이드 앞에 마지막 슬라이드를 배치한다.</span>
+      $('.slide_wrap div:last-child').insertBefore('.slide_wrap div:first-child');
+      <span class="c01">//B.insertBefore(A) : A의 앞쪽에 B를 배치한다.</span>
+
+      <span class="c01">//2. 첫번째 슬라이드가 가운데 보이도록 왼쪽으로 -1600px 이동해줌</span>
+      $('.slide_wrap').css('margin-left','-100%');
+    
+
+      <span class="c01">//3. 왼쪽으로 이동하기 위한 함수</span>
+      function moveLeft(){
+        <span class="c01">//왼쪽으로 1칸 이동</span>
+        $('.slide_wrap').animate({'margin-left':'-200%'},500,function(){
+          <span class="c01">//이동한 후 맨 앞 슬라이드를 맨 뒤로 이동시킴</span>
+          $('.slide_wrap div:first-child').insertAfter('.slide_wrap div:last-child');
+          $('.slide_wrap').css('margin-left','-100%');
+        });
+      }
+
+      <span class="c01">//4. 오른쪽으로 이동하기 위한 함수</span>
+      function moveRight(){
+        <span class="c01">//오른쪽으로 1칸 이동</span>
+        $('.slide_wrap').animate({'margin-left':'0px'},800,function(){
+          <span class="c01">//오른쪽 마지막 슬라이드를 왼쪽 첫번째 슬라이드 앞으로 배치</span>
+          $('.slide_wrap div:last-child').insertBefore('.slide_wrap div:first-child');
+          $('.slide_wrap').css('margin-left','-100%');
+        });
+      }
+
+      <span class="c01">//함수 5초마다 호출</span>
+      let Timer = setInterval(moveLeft, 3500);
+
+      <span class="c01">//좌/우 버튼 클릭시 해당 함수 호출하여 슬라이드 움직이게 하기</span>
+      slbtn.click(function(){
+        clearInterval(Timer);
+        moveLeft();
+      });
+
+      srbtn.click(function(){
+        clearInterval(Timer);
+        moveRight();
+      });
+
+      <span class="c01">//버그찾기 - 시간객체와 클릭시 함수동작이 겹쳐서 두 번 이동하는 버그가 생김</span>
+      <span class="c01">//해결방법 - 좌, 우 버튼 마우스 오버시 시간제거, 마우스 아웃시 다시 시간 생성</span>
+
+      $('.v_slide i.fas').mouseenter(function(){
+        clearInterval(Timer);
+      });
+
+      $('.v_slide i.fas').mouseleave(function(){
+        clearInterval(Timer);
+        Timer = setInterval(moveLeft,3000);
+      });
+
+    });
+  </pre>
+
+  <!-- 제이쿼리 라이브러리 -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+  <script>
+    $(document).ready(function(){
+      // 좌/우 버튼 변수 선언
+      const slbtn = $('.v_slide i.fa-angle-left');
+      const srbtn = $('.v_slide i.fa-angle-right');
+
+
+      //1. 첫번째 슬라이드 앞에 마지막 슬라이드를 배치한다.
+      $('.slide_wrap div:last-child').insertBefore('.slide_wrap div:first-child');
+      //B.insertBefore(A) : A의 앞쪽에 B를 배치한다.
+
+      //2. 첫번째 슬라이드가 가운데 보이도록 왼쪽으로 -1600px 이동해줌
+      $('.slide_wrap').css('margin-left','-100%');
+    
+
+      //3. 왼쪽으로 이동하기 위한 함수
+      function moveLeft(){
+        //왼쪽으로 1칸 이동
+        $('.slide_wrap').animate({'margin-left':'-200%'},500,function(){
+          //이동한 후 맨 앞 슬라이드를 맨 뒤로 이동시킴
+          $('.slide_wrap div:first-child').insertAfter('.slide_wrap div:last-child');
+          $('.slide_wrap').css('margin-left','-100%');
+        });
+      }
+
+      //4. 오른쪽으로 이동하기 위한 함수
+      function moveRight(){
+        //오른쪽으로 1칸 이동
+        $('.slide_wrap').animate({'margin-left':'0px'},800,function(){
+          //오른쪽 마지막 슬라이드를 왼쪽 첫번째 슬라이드 앞으로 배치
+          $('.slide_wrap div:last-child').insertBefore('.slide_wrap div:first-child');
+          $('.slide_wrap').css('margin-left','-100%');
+        });
+      }
+
+      //함수 5초마다 호출
+      let Timer = setInterval(moveLeft, 3500);
+
+      //좌/우 버튼 클릭시 해당 함수 호출하여 슬라이드 움직이게 하기
+      slbtn.click(function(){
+        clearInterval(Timer);
+        moveLeft();
+      });
+
+      srbtn.click(function(){
+        clearInterval(Timer);
+        moveRight();
+      });
+
+      //버그찾기 - 시간객체와 클릭시 함수동작이 겹쳐서 두 번 이동하는 버그가 생김
+      //해결방법 - 좌, 우 버튼 마우스 오버시 시간제거, 마우스 아웃시 다시 시간 생성
+
+      $('.v_slide i.fas').mouseenter(function(){
+        clearInterval(Timer);
+      });
+
+      $('.v_slide i.fas').mouseleave(function(){
+        clearInterval(Timer);
+        Timer = setInterval(moveLeft,3000);
+      });
+
+    });
+  </script>
+</body>
+</html>
